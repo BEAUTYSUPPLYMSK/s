@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Страница не найдена (404) — Beauty Supply</title>
+  
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+  <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+
+  <header id="site-header" class="site-header"></header>
+
+  <main class="section flex-center" style="min-height: 60vh; text-align: center;">
+    <div class="container">
+      <div style="font-size: 6rem; font-family: var(--font-heading); color: var(--color-accent); line-height: 1;">404</div>
+      <h1 style="margin-bottom: var(--space-4);">Страница не найдена</h1>
+      <p style="color: var(--color-secondary); max-width: 500px; margin: 0 auto var(--space-8);">
+        К сожалению, запрашиваемая страница не существует или была перемещена.
+      </p>
+      <div class="flex flex-center" style="gap: var(--space-4);">
+        <a href="../index.html" class="btn btn-primary">На главную</a>
+        <a href="catalog.html" class="btn btn-outline">В каталог</a>
+      </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="../scripts/components.js"></script>
+  <script src="../scripts/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      renderNav('');
+      renderFooter();
+    });
+  </script>
+</body>
+</html>
