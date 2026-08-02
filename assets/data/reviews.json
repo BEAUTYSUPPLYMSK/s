@@ -1,0 +1,32 @@
+[
+  {
+    "id": "rev-1",
+    "author": "Юля",
+    "source": "Avito",
+    "verifiedPurchase": true,
+    "rating": 5,
+    "date": "2026-05-14",
+    "product": "Image Skincare Daily Prevention SPF 30",
+    "text": "Отличный продавец! Косметика 100% оригинал из США, упаковано всё идеально. Доставка через Авито быстро дошла. Спасибо огромное, буду заказать ещё!"
+  },
+  {
+    "id": "rev-2",
+    "author": "Анастасия",
+    "source": "Avito",
+    "verifiedPurchase": true,
+    "rating": 5,
+    "date": "2026-06-20",
+    "product": "Charlotte Tilbury Pillow Talk тени",
+    "text": "Посылка пришла быстро, оригинал Шарлотты в идеальном состоянии! Вся продукция свежая, батч-коды проверила. Однозначно рекомендую продавца."
+  },
+  {
+    "id": "rev-3",
+    "author": "Елена",
+    "source": "Avito",
+    "verifiedPurchase": true,
+    "rating": 5,
+    "date": "2026-07-02",
+    "product": "Hourglass палетка",
+    "text": "Прекрасный сервис и консультация. Помогли подобрать оттенок. Косметика супер качества из Штатов."
+  }
+]

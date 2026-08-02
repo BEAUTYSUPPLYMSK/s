@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FAF8F5"/>
+      <stop offset="50%" stop-color="#F4EDE3"/>
+      <stop offset="100%" stop-color="#E8DFD1"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D4B67B"/>
+      <stop offset="100%" stop-color="#A6864B"/>
+    </linearGradient>
+    <linearGradient id="card-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#FAF7F2"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="800" fill="url(#bg)"/>
+
+  <!-- Decorative Luxury Borders -->
+  <rect x="24" y="24" width="752" height="752" fill="none" stroke="#C9A96E" stroke-width="1.5" stroke-opacity="0.4"/>
+  <rect x="36" y="36" width="728" height="728" fill="none" stroke="#C9A96E" stroke-width="0.75" stroke-opacity="0.25"/>
+
+  <!-- Brand Header -->
+  <text x="400" y="110" font-family="Cormorant Garamond, Georgia, serif" font-size="26" font-weight="700" fill="#111111" text-anchor="middle" letter-spacing="6">BEAUTY SUPPLY</text>
+  <line x1="330" y1="125" x2="470" y2="125" stroke="#C9A96E" stroke-width="1.5"/>
+
+  <!-- Bottle / Item Illustration Container -->
+  <g transform="translate(400, 340)">
+    <!-- Shadow -->
+    <ellipse cx="0" cy="140" rx="100" ry="18" fill="#111111" fill-opacity="0.08"/>
+    <!-- Bottle Body -->
+    <rect x="-85" y="-130" width="170" height="250" rx="16" fill="url(#card-grad)" stroke="#C9A96E" stroke-width="2"/>
+    <!-- Bottle Cap -->
+    <rect x="-40" y="-170" width="80" height="40" rx="4" fill="url(#accent)"/>
+    <rect x="-25" y="-190" width="50" height="20" rx="2" fill="#111111"/>
+    <!-- Label -->
+    <rect x="-65" y="-80" width="130" height="150" fill="#FFFFFF" stroke="#E8E3DA" stroke-width="1"/>
+    <text x="0" y="-45" font-family="Cormorant Garamond, Georgia, serif" font-size="15" font-weight="700" fill="#C9A96E" text-anchor="middle" letter-spacing="2">IMAGE SKINCARE</text>
+    <line x1="-35" y1="-35" x2="35" y2="-35" stroke="#C9A96E" stroke-width="0.75"/>
+    <text x="0" y="-10" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#111111" text-anchor="middle">Daily Prevention</text>
+    <text x="0" y="15" font-family="Inter, sans-serif" font-size="10" fill="#767676" text-anchor="middle">50 мл</text>
+    <rect x="-20" y="35" width="40" height="18" rx="3" fill="#111111"/>
+    <text x="0" y="47" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#C9A96E" text-anchor="middle">USA</text>
+  </g>
+
+  <!-- Product Name Bottom -->
+  <text x="400" y="580" font-family="Cormorant Garamond, Georgia, serif" font-size="30" font-weight="600" fill="#111111" text-anchor="middle">Smart-крем SPF 75</text>
+  <text x="400" y="615" font-family="Inter, sans-serif" font-size="15" fill="#767676" text-anchor="middle" letter-spacing="1">Image Skincare · ORIGINAL</text>
+
+  <!-- USA Flag Tag -->
+  <g transform="translate(610, 700)">
+    <rect x="0" y="0" width="140" height="42" rx="21" fill="#111111" stroke="#C9A96E" stroke-width="1"/>
+    <text x="70" y="26" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#C9A96E" text-anchor="middle">🇺🇸 USA IMPORT</text>
+  </g>
+</svg>

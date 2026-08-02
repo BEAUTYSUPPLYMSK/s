@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Каталог продукции — Beauty Supply</title>
+  <meta name="description" content="Каталог премиальной косметики из США: Image Skincare, Charlotte Tilbury, Hourglass. В наличии в Москве и под заказ.">
+  
+  <link rel="canonical" href="https://beautysupplymsk.github.io/1/pages/catalog.html">
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Каталог премиальной косметики из США — Beauty Supply">
+  <meta property="og:description" content="Полный каталог селективной уходовой и декоративной косметики США.">
+  <meta property="og:image" content="../assets/images/og-default.svg">
+
+  <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+
+  <header id="site-header" class="site-header"></header>
+
+  <main class="section">
+    <div class="container">
+      
+      <!-- Catalog Header -->
+      <div style="margin-bottom: var(--space-8);">
+        <nav aria-label="Хлебные крошки" style="margin-bottom: var(--space-4); font-size: var(--text-xs); color: var(--color-muted);">
+          <a href="../index.html">Главная</a> &gt; <span style="color: var(--color-primary); font-weight: 600;">Каталог</span>
+        </nav>
+        <h1>Каталог премиальной косметики</h1>
+        <p style="color: var(--color-secondary);">100% оригинальная продукция брендов Image Skincare, Charlotte Tilbury и Hourglass из США.</p>
+      </div>
+
+      <!-- Filter Bar -->
+      <div style="background: var(--color-surface); border: 1px solid var(--color-border); padding: var(--space-6); border-radius: var(--radius-md); margin-bottom: var(--space-8);">
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); align-items: end;">
+          
+          <div>
+            <label for="filter-brand" style="display: block; font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; margin-bottom: var(--space-1); color: var(--color-muted);">Бренд</label>
+            <select id="filter-brand" style="width: 100%; padding: 0.625rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-surface);">
+              <option value="">Все бренды</option>
+              <option value="Image Skincare">Image Skincare</option>
+              <option value="Charlotte Tilbury">Charlotte Tilbury</option>
+              <option value="Hourglass">Hourglass</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="filter-category" style="display: block; font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; margin-bottom: var(--space-1); color: var(--color-muted);">Категория</label>
+            <select id="filter-category" style="width: 100%; padding: 0.625rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-surface);">
+              <option value="">Все категории</option>
+              <option value="face-care">Уход за лицом</option>
+              <option value="body-care">Уход за телом</option>
+              <option value="spf">Солнцезащита SPF</option>
+              <option value="makeup">Декоративная косметика</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="filter-goal" style="display: block; font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; margin-bottom: var(--space-1); color: var(--color-muted);">Назначение / Потребность</label>
+            <select id="filter-goal" style="width: 100%; padding: 0.625rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-surface);">
+              <option value="">Все назначение</option>
+              <option value="anti-age">Anti-age & Омоложение</option>
+              <option value="lifting">Лифтинг & Плотность</option>
+              <option value="spf">Защита SPF</option>
+              <option value="glow">Сияние & Тон</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="filter-search" style="display: block; font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; margin-bottom: var(--space-1); color: var(--color-muted);">Поиск</label>
+            <input type="text" id="filter-search" placeholder="Поиск по названию..." style="width: 100%; padding: 0.625rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm);">
+          </div>
+
+        </div>
+
+        <div style="margin-top: var(--space-4); display: flex; justify-content: space-between; align-items: center; font-size: var(--text-xs); color: var(--color-muted);">
+          <span id="catalog-count">Загрузка каталога...</span>
+          <span>Доставка по всей России</span>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div id="catalog-products-grid" class="grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+        <!-- JS Hydrated -->
+      </div>
+
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="../scripts/components.js"></script>
+  <script src="../scripts/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      renderNav('catalog');
+      renderFooter();
+      initCatalogPage();
+    });
+  </script>
+</body>
+</html>
