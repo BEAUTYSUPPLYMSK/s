@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 600" width="1440" height="600">
+  <defs>
+    <linearGradient id="hero-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A1816"/>
+      <stop offset="50%" stop-color="#111111"/>
+      <stop offset="100%" stop-color="#241E19"/>
+    </linearGradient>
+    <radialGradient id="hero-glow" cx="80%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#C9A96E" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#111111" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1440" height="600" fill="url(#hero-bg)"/>
+  <rect width="1440" height="600" fill="url(#hero-glow)"/>
+  <!-- Subtle Grid Pattern -->
+  <path d="M0,100 L1440,100 M0,200 L1440,200 M0,300 L1440,300 M0,400 L1440,400 M0,500 L1440,500" stroke="#C9A96E" stroke-width="0.5" stroke-opacity="0.08"/>
+  <circle cx="1200" cy="200" r="180" fill="none" stroke="#C9A96E" stroke-width="1" stroke-opacity="0.15"/>
+  <circle cx="1200" cy="200" r="260" fill="none" stroke="#C9A96E" stroke-width="0.5" stroke-opacity="0.1"/>
+</svg>
