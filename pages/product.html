@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Товар — Beauty Supply</title>
+  <meta name="description" content="Детальная информация о продукте, состав, цена и оформление заказа с доставкой.">
+  
+  <link rel="canonical" href="https://beautysupplymsk.github.io/1/pages/product.html">
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+
+  <meta property="og:type" content="product">
+  <meta property="og:title" content="Премиальная косметика — Beauty Supply">
+  <meta property="og:description" content="Заказать оригинальную косметику из США через Telegram.">
+  <meta property="og:image" content="../assets/images/og-default.svg">
+
+  <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+
+  <header id="site-header" class="site-header"></header>
+
+  <main class="section">
+    <div class="container" id="product-detail-container">
+      <p class="text-center">Загрузка информации о товаре...</p>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="../scripts/components.js"></script>
+  <script src="../scripts/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      renderNav('catalog');
+      renderFooter();
+      initProductDetailPage();
+    });
+  </script>
+</body>
+</html>
