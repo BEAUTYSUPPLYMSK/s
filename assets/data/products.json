@@ -25,9 +25,7 @@
     "gallery": [
       "./public/product-cards/product-01-image-skincare-volu-lift-body/hero.webp",
       "./public/product-cards/product-01-image-skincare-volu-lift-body/detail.webp",
-      "./public/product-cards/product-01-image-skincare-volu-lift-body/lifestyle.webp",
-      "./public/product-cards/product-01-image-skincare-volu-lift-body/angle.webp",
-      "./public/product-cards/product-01-image-skincare-volu-lift-body/wow.webp"
+      "./public/product-cards/product-01-image-skincare-volu-lift-body/trust.webp"
     ]
   },
   {
@@ -56,9 +54,7 @@
     "gallery": [
       "./public/product-cards/product-02-image-skincare-volu-lift-face/hero.webp",
       "./public/product-cards/product-02-image-skincare-volu-lift-face/detail.webp",
-      "./public/product-cards/product-02-image-skincare-volu-lift-face/lifestyle.webp",
-      "./public/product-cards/product-02-image-skincare-volu-lift-face/angle.webp",
-      "./public/product-cards/product-02-image-skincare-volu-lift-face/wow.webp"
+      "./public/product-cards/product-02-image-skincare-volu-lift-face/trust.webp"
     ]
   },
   {
@@ -87,9 +83,7 @@
     "gallery": [
       "./public/product-cards/product-03-image-skincare-vital-c-cream/hero.webp",
       "./public/product-cards/product-03-image-skincare-vital-c-cream/detail.webp",
-      "./public/product-cards/product-03-image-skincare-vital-c-cream/lifestyle.webp",
-      "./public/product-cards/product-03-image-skincare-vital-c-cream/angle.webp",
-      "./public/product-cards/product-03-image-skincare-vital-c-cream/wow.webp"
+      "./public/product-cards/product-03-image-skincare-vital-c-cream/trust.webp"
     ]
   },
   {
@@ -118,9 +112,7 @@
     "gallery": [
       "./public/product-cards/product-04-image-skincare-ageless-retinol/hero.webp",
       "./public/product-cards/product-04-image-skincare-ageless-retinol/detail.webp",
-      "./public/product-cards/product-04-image-skincare-ageless-retinol/lifestyle.webp",
-      "./public/product-cards/product-04-image-skincare-ageless-retinol/angle.webp",
-      "./public/product-cards/product-04-image-skincare-ageless-retinol/wow.webp"
+      "./public/product-cards/product-04-image-skincare-ageless-retinol/trust.webp"
     ]
   },
   {
@@ -149,9 +141,7 @@
     "gallery": [
       "./public/product-cards/product-05-image-skincare-daily-prevention-spf30/hero.webp",
       "./public/product-cards/product-05-image-skincare-daily-prevention-spf30/detail.webp",
-      "./public/product-cards/product-05-image-skincare-daily-prevention-spf30/lifestyle.webp",
-      "./public/product-cards/product-05-image-skincare-daily-prevention-spf30/angle.webp",
-      "./public/product-cards/product-05-image-skincare-daily-prevention-spf30/wow.webp"
+      "./public/product-cards/product-05-image-skincare-daily-prevention-spf30/trust.webp"
     ]
   },
   {
@@ -180,9 +170,7 @@
     "gallery": [
       "./public/product-cards/product-06-image-skincare-daily-prevention-spf75/hero.webp",
       "./public/product-cards/product-06-image-skincare-daily-prevention-spf75/detail.webp",
-      "./public/product-cards/product-06-image-skincare-daily-prevention-spf75/lifestyle.webp",
-      "./public/product-cards/product-06-image-skincare-daily-prevention-spf75/angle.webp",
-      "./public/product-cards/product-06-image-skincare-daily-prevention-spf75/wow.webp"
+      "./public/product-cards/product-06-image-skincare-daily-prevention-spf75/trust.webp"
     ]
   },
   {
@@ -210,9 +198,7 @@
     "gallery": [
       "./public/product-cards/product-07-charlotte-tilbury-pillow-talk/hero.webp",
       "./public/product-cards/product-07-charlotte-tilbury-pillow-talk/detail.webp",
-      "./public/product-cards/product-07-charlotte-tilbury-pillow-talk/lifestyle.webp",
-      "./public/product-cards/product-07-charlotte-tilbury-pillow-talk/angle.webp",
-      "./public/product-cards/product-07-charlotte-tilbury-pillow-talk/wow.webp"
+      "./public/product-cards/product-07-charlotte-tilbury-pillow-talk/trust.webp"
     ]
   },
   {
@@ -240,9 +226,7 @@
     "gallery": [
       "./public/product-cards/product-08-hourglass-curator-eyeshadow/hero.webp",
       "./public/product-cards/product-08-hourglass-curator-eyeshadow/detail.webp",
-      "./public/product-cards/product-08-hourglass-curator-eyeshadow/lifestyle.webp",
-      "./public/product-cards/product-08-hourglass-curator-eyeshadow/angle.webp",
-      "./public/product-cards/product-08-hourglass-curator-eyeshadow/wow.webp"
+      "./public/product-cards/product-08-hourglass-curator-eyeshadow/trust.webp"
     ]
   },
   {
@@ -270,9 +254,7 @@
     "gallery": [
       "./public/product-cards/product-09-hourglass-ambient-lighting-palette/hero.webp",
       "./public/product-cards/product-09-hourglass-ambient-lighting-palette/detail.webp",
-      "./public/product-cards/product-09-hourglass-ambient-lighting-palette/lifestyle.webp",
-      "./public/product-cards/product-09-hourglass-ambient-lighting-palette/angle.webp",
-      "./public/product-cards/product-09-hourglass-ambient-lighting-palette/wow.webp"
+      "./public/product-cards/product-09-hourglass-ambient-lighting-palette/trust.webp"
     ]
   },
   {
@@ -300,9 +282,7 @@
     "gallery": [
       "./public/product-cards/product-10-hourglass-ambient-lighting-blush/hero.webp",
       "./public/product-cards/product-10-hourglass-ambient-lighting-blush/detail.webp",
-      "./public/product-cards/product-10-hourglass-ambient-lighting-blush/lifestyle.webp",
-      "./public/product-cards/product-10-hourglass-ambient-lighting-blush/angle.webp",
-      "./public/product-cards/product-10-hourglass-ambient-lighting-blush/wow.webp"
+      "./public/product-cards/product-10-hourglass-ambient-lighting-blush/trust.webp"
     ]
   },
   {
@@ -329,9 +309,7 @@
     "gallery": [
       "./public/product-cards/product-11-charlotte-tilbury-hollywood-contour/hero.webp",
       "./public/product-cards/product-11-charlotte-tilbury-hollywood-contour/detail.webp",
-      "./public/product-cards/product-11-charlotte-tilbury-hollywood-contour/lifestyle.webp",
-      "./public/product-cards/product-11-charlotte-tilbury-hollywood-contour/angle.webp",
-      "./public/product-cards/product-11-charlotte-tilbury-hollywood-contour/wow.webp"
+      "./public/product-cards/product-11-charlotte-tilbury-hollywood-contour/trust.webp"
     ]
   },
   {
@@ -360,9 +338,7 @@
     "gallery": [
       "./public/product-cards/product-12-image-md-restoring-youth-serum/hero.webp",
       "./public/product-cards/product-12-image-md-restoring-youth-serum/detail.webp",
-      "./public/product-cards/product-12-image-md-restoring-youth-serum/lifestyle.webp",
-      "./public/product-cards/product-12-image-md-restoring-youth-serum/angle.webp",
-      "./public/product-cards/product-12-image-md-restoring-youth-serum/wow.webp"
+      "./public/product-cards/product-12-image-md-restoring-youth-serum/trust.webp"
     ]
   }
 ]
