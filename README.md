@@ -1,6 +1,6 @@
 # Beauty Supply — Premium US Beauty Imports
 
-> **Live Demo:** [https://beautysupplymsk.github.io/1/](https://beautysupplymsk.github.io/1/)  
+> **Live Demo:** [https://beautysupplymsk.github.io/s/](https://beautysupplymsk.github.io/s/)  
 > **Production Domain (planned):** https://beauty-supply.shop
 
 Static e-commerce website for Beauty Supply (Премиальная косметика из США в России).
