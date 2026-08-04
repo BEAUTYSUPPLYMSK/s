@@ -6,7 +6,11 @@
     "line": "Body Spa",
     "name": "Лифтинг-крем для тела VOL.U.lift",
     "category": "body-care",
-    "goals": ["lifting", "body", "anti-age"],
+    "goals": [
+      "lifting",
+      "body",
+      "anti-age"
+    ],
     "origin": "USA",
     "price": 7799,
     "currency": "RUB",
@@ -16,8 +20,15 @@
     "volume": "170 мл",
     "shortDescription": "Укрепляющий и моделирующий крем для тела с пептидным комплексом.",
     "fullDescription": "Инновационный крем для ухода за кожей тела. Уникальная формула с высокоэффективными пептидами и растительными экстрактами способствует повышению упругости и эластичности кожи, выравнивает микрорельеф и обеспечивает интенсивное увлажнение.",
-    "image": "./assets/products/image-vol-u-lift-body.svg",
-    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_image-vol-u-lift-body"
+    "image": "./public/product-cards/product-01-image-skincare-volu-lift-body/hero.webp",
+    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_image-vol-u-lift-body",
+    "gallery": [
+      "./public/product-cards/product-01-image-skincare-volu-lift-body/hero.webp",
+      "./public/product-cards/product-01-image-skincare-volu-lift-body/detail.webp",
+      "./public/product-cards/product-01-image-skincare-volu-lift-body/lifestyle.webp",
+      "./public/product-cards/product-01-image-skincare-volu-lift-body/angle.webp",
+      "./public/product-cards/product-01-image-skincare-volu-lift-body/wow.webp"
+    ]
   },
   {
     "id": "image-vol-u-lift-face",
@@ -26,7 +37,11 @@
     "line": "VOL.U.lift",
     "name": "Крем для лица VOL.U.lift",
     "category": "face-care",
-    "goals": ["lifting", "anti-age", "hydration"],
+    "goals": [
+      "lifting",
+      "anti-age",
+      "hydration"
+    ],
     "origin": "USA",
     "price": 11599,
     "currency": "RUB",
@@ -36,8 +51,15 @@
     "volume": "50 мл",
     "shortDescription": "Премиальный антивозрастной крем с эффектом лифтинга и восстановления объема.",
     "fullDescription": "Роскошный крем для лица, разработанный для разглаживания кожи и возвращения ей четких контуров. Стимулирует естественное обновление, придает коже плотность и сияние. Идеально под макияж или как вечерний уход.",
-    "image": "./assets/products/image-vol-u-lift-face.svg",
-    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_image-vol-u-lift-face"
+    "image": "./public/product-cards/product-02-image-skincare-volu-lift-face/hero.webp",
+    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_image-vol-u-lift-face",
+    "gallery": [
+      "./public/product-cards/product-02-image-skincare-volu-lift-face/hero.webp",
+      "./public/product-cards/product-02-image-skincare-volu-lift-face/detail.webp",
+      "./public/product-cards/product-02-image-skincare-volu-lift-face/lifestyle.webp",
+      "./public/product-cards/product-02-image-skincare-volu-lift-face/angle.webp",
+      "./public/product-cards/product-02-image-skincare-volu-lift-face/wow.webp"
+    ]
   },
   {
     "id": "image-vitamin-c-night-cream",
@@ -46,7 +68,11 @@
     "line": "Vital C",
     "name": "Ночной крем с витамином C",
     "category": "face-care",
-    "goals": ["glow", "anti-age", "hydration"],
+    "goals": [
+      "glow",
+      "anti-age",
+      "hydration"
+    ],
     "origin": "USA",
     "price": 7799,
     "currency": "RUB",
@@ -56,8 +82,15 @@
     "volume": "50 мл",
     "shortDescription": "Питательный ночной крем для глубокого увлажнения и выравнивания тона кожи.",
     "fullDescription": "Формула с несколькими стабильными формами витамина C питает и насыщает антиоксидантами в ночное время. Утром кожа выглядит отдохнувшей, свежей и сияющей. Устраняет сухость и тусклый цвет лица.",
-    "image": "./assets/products/image-vitamin-c-night-cream.svg",
-    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_image-vitamin-c-night-cream"
+    "image": "./public/product-cards/product-03-image-skincare-vital-c-cream/hero.webp",
+    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_image-vitamin-c-night-cream",
+    "gallery": [
+      "./public/product-cards/product-03-image-skincare-vital-c-cream/hero.webp",
+      "./public/product-cards/product-03-image-skincare-vital-c-cream/detail.webp",
+      "./public/product-cards/product-03-image-skincare-vital-c-cream/lifestyle.webp",
+      "./public/product-cards/product-03-image-skincare-vital-c-cream/angle.webp",
+      "./public/product-cards/product-03-image-skincare-vital-c-cream/wow.webp"
+    ]
   },
   {
     "id": "image-retinol-03-night-cream",
@@ -66,7 +99,11 @@
     "line": "Ageless",
     "name": "Ночной крем с ретинолом 0.3%",
     "category": "face-care",
-    "goals": ["anti-age", "texture", "renewal"],
+    "goals": [
+      "anti-age",
+      "texture",
+      "renewal"
+    ],
     "origin": "USA",
     "price": 8000,
     "currency": "RUB",
@@ -76,8 +113,15 @@
     "volume": "50 мл",
     "shortDescription": "Высокоактивный инкапсулированный ретинол для разглаживания текстуры.",
     "fullDescription": "Профессиональный обновляющий крем с ретинолом 0.3%. Ускоряет клеточное обновление, разглаживает мелкие морщинки и улучшает плотность кожи. Систематический уход для визуального омоложения.",
-    "image": "./assets/products/image-retinol-03-night-cream.svg",
-    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_image-retinol-03-night-cream"
+    "image": "./public/product-cards/product-04-image-skincare-ageless-retinol/hero.webp",
+    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_image-retinol-03-night-cream",
+    "gallery": [
+      "./public/product-cards/product-04-image-skincare-ageless-retinol/hero.webp",
+      "./public/product-cards/product-04-image-skincare-ageless-retinol/detail.webp",
+      "./public/product-cards/product-04-image-skincare-ageless-retinol/lifestyle.webp",
+      "./public/product-cards/product-04-image-skincare-ageless-retinol/angle.webp",
+      "./public/product-cards/product-04-image-skincare-ageless-retinol/wow.webp"
+    ]
   },
   {
     "id": "image-daily-prevention-spf-30",
@@ -86,7 +130,11 @@
     "line": "Daily Prevention",
     "name": "Daily Prevention SPF 30",
     "category": "spf",
-    "goals": ["spf", "protection", "hydration"],
+    "goals": [
+      "spf",
+      "protection",
+      "hydration"
+    ],
     "origin": "USA",
     "price": 5200,
     "currency": "RUB",
@@ -96,8 +144,15 @@
     "volume": "73 мл",
     "shortDescription": "Ежедневный увлажняющий крем с широким спектром защиты SPF 30.",
     "fullDescription": "Инновационное средство 2-в-1: дневной увлажняющий крем и надежный солнцезащитный фильтр. Быстро впитывается, не оставляет белых следов и липкости, является прекрасной базой под декоративную косметику.",
-    "image": "./assets/products/image-daily-prevention-spf-30.svg",
-    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_image-daily-prevention-spf-30"
+    "image": "./public/product-cards/product-05-image-skincare-daily-prevention-spf30/hero.webp",
+    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_image-daily-prevention-spf-30",
+    "gallery": [
+      "./public/product-cards/product-05-image-skincare-daily-prevention-spf30/hero.webp",
+      "./public/product-cards/product-05-image-skincare-daily-prevention-spf30/detail.webp",
+      "./public/product-cards/product-05-image-skincare-daily-prevention-spf30/lifestyle.webp",
+      "./public/product-cards/product-05-image-skincare-daily-prevention-spf30/angle.webp",
+      "./public/product-cards/product-05-image-skincare-daily-prevention-spf30/wow.webp"
+    ]
   },
   {
     "id": "image-smart-cream-spf-75",
@@ -106,7 +161,11 @@
     "line": "Daily Prevention",
     "name": "Smart-крем SPF 75",
     "category": "spf",
-    "goals": ["spf", "protection", "anti-age"],
+    "goals": [
+      "spf",
+      "protection",
+      "anti-age"
+    ],
     "origin": "USA",
     "price": 6000,
     "currency": "RUB",
@@ -116,8 +175,15 @@
     "volume": "50 мл",
     "shortDescription": "Максимальная фотозащита и умное восстановление кожи.",
     "fullDescription": "Ультравысокая защита от UVA/UVB лучей и синего света. Интеллектуальный комплекс защищает клетки от фотостарения и неблагоприятного воздействия внешней среды. Рекомендован после инвазивных процедур.",
-    "image": "./assets/products/image-smart-cream-spf-75.svg",
-    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_image-smart-cream-spf-75"
+    "image": "./public/product-cards/product-06-image-skincare-daily-prevention-spf75/hero.webp",
+    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_image-smart-cream-spf-75",
+    "gallery": [
+      "./public/product-cards/product-06-image-skincare-daily-prevention-spf75/hero.webp",
+      "./public/product-cards/product-06-image-skincare-daily-prevention-spf75/detail.webp",
+      "./public/product-cards/product-06-image-skincare-daily-prevention-spf75/lifestyle.webp",
+      "./public/product-cards/product-06-image-skincare-daily-prevention-spf75/angle.webp",
+      "./public/product-cards/product-06-image-skincare-daily-prevention-spf75/wow.webp"
+    ]
   },
   {
     "id": "charlotte-tilbury-pillow-talk-eyeshadow",
@@ -126,7 +192,10 @@
     "line": "Luxury Palette",
     "name": "Pillow Talk тени для век",
     "category": "makeup",
-    "goals": ["glow", "makeup"],
+    "goals": [
+      "glow",
+      "makeup"
+    ],
     "origin": "USA",
     "price": 7500,
     "currency": "RUB",
@@ -136,8 +205,15 @@
     "volume": "5.2 г",
     "shortDescription": "Культовая 4-цветная палетка теней в розово-нюдовой гамме Pillow Talk.",
     "fullDescription": "Легендарные тени от Шарлотты Тилбери. Четыре гармоничных оттенка (Prime, Enhance, Smoke, Pop) с шелковистой текстурой. Легко тушуются, подходят для дневного и вечернего макияжа.",
-    "image": "./assets/products/charlotte-tilbury-pillow-talk-eyeshadow.svg",
-    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_charlotte-tilbury-pillow-talk-eyeshadow"
+    "image": "./public/product-cards/product-07-charlotte-tilbury-pillow-talk/hero.webp",
+    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_charlotte-tilbury-pillow-talk-eyeshadow",
+    "gallery": [
+      "./public/product-cards/product-07-charlotte-tilbury-pillow-talk/hero.webp",
+      "./public/product-cards/product-07-charlotte-tilbury-pillow-talk/detail.webp",
+      "./public/product-cards/product-07-charlotte-tilbury-pillow-talk/lifestyle.webp",
+      "./public/product-cards/product-07-charlotte-tilbury-pillow-talk/angle.webp",
+      "./public/product-cards/product-07-charlotte-tilbury-pillow-talk/wow.webp"
+    ]
   },
   {
     "id": "hourglass-eyeshadow-palette",
@@ -146,7 +222,10 @@
     "line": "Curator",
     "name": "Hourglass тени для век",
     "category": "makeup",
-    "goals": ["makeup", "glow"],
+    "goals": [
+      "makeup",
+      "glow"
+    ],
     "origin": "USA",
     "price": 6500,
     "currency": "RUB",
@@ -156,8 +235,15 @@
     "volume": "3.5 г",
     "shortDescription": "Шелковистые тени с ультратонкими пигментами и стойким финишем.",
     "fullDescription": "Роскошные тени для веки с невероятной цветопередачей. Невесомая текстура ложится вуалью, создает сияющий естественный макияж без осыпания в течение всего дня.",
-    "image": "./assets/products/hourglass-eyeshadow-palette.svg",
-    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_hourglass-eyeshadow-palette"
+    "image": "./public/product-cards/product-08-hourglass-curator-eyeshadow/hero.webp",
+    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_hourglass-eyeshadow-palette",
+    "gallery": [
+      "./public/product-cards/product-08-hourglass-curator-eyeshadow/hero.webp",
+      "./public/product-cards/product-08-hourglass-curator-eyeshadow/detail.webp",
+      "./public/product-cards/product-08-hourglass-curator-eyeshadow/lifestyle.webp",
+      "./public/product-cards/product-08-hourglass-curator-eyeshadow/angle.webp",
+      "./public/product-cards/product-08-hourglass-curator-eyeshadow/wow.webp"
+    ]
   },
   {
     "id": "hourglass-ambient-palette",
@@ -166,7 +252,10 @@
     "line": "Ambient Lighting",
     "name": "Hourglass палетка для лица",
     "category": "makeup",
-    "goals": ["glow", "makeup"],
+    "goals": [
+      "glow",
+      "makeup"
+    ],
     "origin": "USA",
     "price": 7500,
     "currency": "RUB",
@@ -176,8 +265,15 @@
     "volume": "10 г",
     "shortDescription": "Универсальная палетка финишных пудр, хайлайтера и бронзера.",
     "fullDescription": "Запатентованная технология фотолюминесценции рассеивает свет, рассеивает несовершенства и придаёт коже эффекта «живого фильтра». Незаменимый бестселлер визажистов.",
-    "image": "./assets/products/hourglass-ambient-palette.svg",
-    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_hourglass-ambient-palette"
+    "image": "./public/product-cards/product-09-hourglass-ambient-lighting-palette/hero.webp",
+    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_hourglass-ambient-palette",
+    "gallery": [
+      "./public/product-cards/product-09-hourglass-ambient-lighting-palette/hero.webp",
+      "./public/product-cards/product-09-hourglass-ambient-lighting-palette/detail.webp",
+      "./public/product-cards/product-09-hourglass-ambient-lighting-palette/lifestyle.webp",
+      "./public/product-cards/product-09-hourglass-ambient-lighting-palette/angle.webp",
+      "./public/product-cards/product-09-hourglass-ambient-lighting-palette/wow.webp"
+    ]
   },
   {
     "id": "hourglass-ambient-blush",
@@ -186,7 +282,10 @@
     "line": "Ambient Lighting",
     "name": "Hourglass румяна Ambient Lighting",
     "category": "makeup",
-    "goals": ["glow", "makeup"],
+    "goals": [
+      "glow",
+      "makeup"
+    ],
     "origin": "USA",
     "price": 3700,
     "currency": "RUB",
@@ -196,8 +295,15 @@
     "volume": "4.2 г",
     "shortDescription": "Гибрид финишной пудры и насыщенных румян для естественного свечения.",
     "fullDescription": "Мраморный рисунок каждого экземпляра уникален. Сияющие пигменты создают невероятно мягкий, естественный румянец без эффекта напудренности.",
-    "image": "./assets/products/hourglass-ambient-blush.svg",
-    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_hourglass-ambient-blush"
+    "image": "./public/product-cards/product-10-hourglass-ambient-lighting-blush/hero.webp",
+    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_hourglass-ambient-blush",
+    "gallery": [
+      "./public/product-cards/product-10-hourglass-ambient-lighting-blush/hero.webp",
+      "./public/product-cards/product-10-hourglass-ambient-lighting-blush/detail.webp",
+      "./public/product-cards/product-10-hourglass-ambient-lighting-blush/lifestyle.webp",
+      "./public/product-cards/product-10-hourglass-ambient-lighting-blush/angle.webp",
+      "./public/product-cards/product-10-hourglass-ambient-lighting-blush/wow.webp"
+    ]
   },
   {
     "id": "charlotte-tilbury-contour-wand",
@@ -206,7 +312,9 @@
     "line": "Hollywood",
     "name": "Charlotte Tilbury контуринг",
     "category": "makeup",
-    "goals": ["makeup"],
+    "goals": [
+      "makeup"
+    ],
     "origin": "USA",
     "price": 3500,
     "currency": "RUB",
@@ -216,8 +324,15 @@
     "volume": "12 мл",
     "shortDescription": "Жидкий скульптор Hollywood Contour Wand со спонжем-аппликатором.",
     "fullDescription": "Создает естественные мягкие тени на лице, легко растушевывается пальцами или кистью. Легкая гелевая текстура с деликатным полуматовым финишем.",
-    "image": "./assets/products/charlotte-tilbury-contour-wand.svg",
-    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_charlotte-tilbury-contour-wand"
+    "image": "./public/product-cards/product-11-charlotte-tilbury-hollywood-contour/hero.webp",
+    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_charlotte-tilbury-contour-wand",
+    "gallery": [
+      "./public/product-cards/product-11-charlotte-tilbury-hollywood-contour/hero.webp",
+      "./public/product-cards/product-11-charlotte-tilbury-hollywood-contour/detail.webp",
+      "./public/product-cards/product-11-charlotte-tilbury-hollywood-contour/lifestyle.webp",
+      "./public/product-cards/product-11-charlotte-tilbury-hollywood-contour/angle.webp",
+      "./public/product-cards/product-11-charlotte-tilbury-hollywood-contour/wow.webp"
+    ]
   },
   {
     "id": "image-md-restoring-youth-serum",
@@ -226,7 +341,11 @@
     "line": "Image MD",
     "name": "Image MD Restoring Youth Serum",
     "category": "face-care",
-    "goals": ["anti-age", "lifting", "renewal"],
+    "goals": [
+      "anti-age",
+      "lifting",
+      "renewal"
+    ],
     "origin": "USA",
     "price": 10800,
     "currency": "RUB",
@@ -236,7 +355,14 @@
     "volume": "30 мл",
     "shortDescription": "Высококонцентрированная омолаживающая сыворотка с пептидами.",
     "fullDescription": "Разработана дерматологами. Уникальная система доставки инкапсулированных ингредиентов обеспечивает их глубокое проникновение. Заметно повышает упругость кожи и подтягивает овал лица.",
-    "image": "./assets/products/image-md-restoring-youth-serum.svg",
-    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_image-md-restoring-youth-serum"
+    "image": "./public/product-cards/product-12-image-md-restoring-youth-serum/hero.webp",
+    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_image-md-restoring-youth-serum",
+    "gallery": [
+      "./public/product-cards/product-12-image-md-restoring-youth-serum/hero.webp",
+      "./public/product-cards/product-12-image-md-restoring-youth-serum/detail.webp",
+      "./public/product-cards/product-12-image-md-restoring-youth-serum/lifestyle.webp",
+      "./public/product-cards/product-12-image-md-restoring-youth-serum/angle.webp",
+      "./public/product-cards/product-12-image-md-restoring-youth-serum/wow.webp"
+    ]
   }
 ]

@@ -221,14 +221,24 @@ function initProductDetailPage() {
           <!-- Product Media Column -->
           <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-6); text-align: center;">
             <img 
+              id="main-product-image"
               src="${imageSrc}" 
-              alt="${product.brand} — ${product.name}" 
-              style="width: 100%; max-width: 500px; height: auto; border-radius: var(--radius-sm); margin: 0 auto;"
+              alt="${product.brand} — ${product.name} (Оригинал США)" 
+              style="width: 100%; max-width: 500px; height: auto; border-radius: var(--radius-sm); margin: 0 auto; transition: opacity 0.2s;"
               width="600"
               height="600"
               loading="lazy"
               decoding="async"
             >
+            ${(product.gallery && product.gallery.length > 1) ? `
+            <div class="product-gallery-thumbs" style="display: flex; justify-content: center; gap: 0.5rem; margin-top: var(--space-4); flex-wrap: wrap;">
+              ${product.gallery.map((gImg, idx) => {
+                const thSrc = gImg.replace('./', base);
+                return `<button type="button" class="gallery-thumb-btn" style="border: 2px solid ${idx === 0 ? 'var(--color-accent)' : 'transparent'}; border-radius: var(--radius-sm); padding: 2px; background: none; cursor: pointer; transition: all 0.2s;" onclick="const mImg=document.getElementById('main-product-image'); if(mImg){mImg.src='${thSrc}';} document.querySelectorAll('.gallery-thumb-btn').forEach(b => b.style.borderColor='transparent'); this.style.borderColor='var(--color-accent)';" aria-label="Показать ракурс ${idx + 1}">
+                  <img src="${thSrc}" alt="" style="width: 56px; height: 56px; object-fit: cover; border-radius: 4px;" loading="lazy" decoding="async">
+                </button>`;
+              }).join('')}
+            </div>` : ''}
             <div class="flex flex-center" style="margin-top: var(--space-4); gap: var(--space-2);">
               <span class="badge">🇺🇸 Поставка из США</span>
               <span class="badge badge-dark">100% Оригинал</span>
