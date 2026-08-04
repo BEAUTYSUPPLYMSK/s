@@ -20,12 +20,13 @@
     "volume": "170 мл",
     "shortDescription": "Укрепляющий и моделирующий крем для тела с пептидным комплексом.",
     "fullDescription": "Инновационный крем для ухода за кожей тела. Уникальная формула с высокоэффективными пептидами и растительными экстрактами способствует повышению упругости и эластичности кожи, выравнивает микрорельеф и обеспечивает интенсивное увлажнение.",
-    "image": "./public/product-cards/product-01-image-skincare-volu-lift-body/hero.webp",
+    "image": "./public/product-cards/product-01-image-skincare-vol-u-lift-body/hero.webp",
     "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_image-vol-u-lift-body",
     "gallery": [
-      "./public/product-cards/product-01-image-skincare-volu-lift-body/hero.webp",
-      "./public/product-cards/product-01-image-skincare-volu-lift-body/detail.webp",
-      "./public/product-cards/product-01-image-skincare-volu-lift-body/trust.webp"
+      "./public/product-cards/product-01-image-skincare-vol-u-lift-body/hero.webp",
+      "./public/product-cards/product-01-image-skincare-vol-u-lift-body/detail.webp",
+      "./public/product-cards/product-01-image-skincare-vol-u-lift-body/lifestyle.webp",
+      "./public/product-cards/product-01-image-skincare-vol-u-lift-body/trust.webp"
     ]
   },
   {
@@ -49,12 +50,13 @@
     "volume": "50 мл",
     "shortDescription": "Премиальный антивозрастной крем с эффектом лифтинга и восстановления объема.",
     "fullDescription": "Роскошный крем для лица, разработанный для разглаживания кожи и возвращения ей четких контуров. Стимулирует естественное обновление, придает коже плотность и сияние. Идеально под макияж или как вечерний уход.",
-    "image": "./public/product-cards/product-02-image-skincare-volu-lift-face/hero.webp",
+    "image": "./public/product-cards/product-02-image-skincare-vol-u-lift-face/hero.webp",
     "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_image-vol-u-lift-face",
     "gallery": [
-      "./public/product-cards/product-02-image-skincare-volu-lift-face/hero.webp",
-      "./public/product-cards/product-02-image-skincare-volu-lift-face/detail.webp",
-      "./public/product-cards/product-02-image-skincare-volu-lift-face/trust.webp"
+      "./public/product-cards/product-02-image-skincare-vol-u-lift-face/hero.webp",
+      "./public/product-cards/product-02-image-skincare-vol-u-lift-face/detail.webp",
+      "./public/product-cards/product-02-image-skincare-vol-u-lift-face/lifestyle.webp",
+      "./public/product-cards/product-02-image-skincare-vol-u-lift-face/trust.webp"
     ]
   },
   {
@@ -83,6 +85,7 @@
     "gallery": [
       "./public/product-cards/product-03-image-skincare-vital-c-cream/hero.webp",
       "./public/product-cards/product-03-image-skincare-vital-c-cream/detail.webp",
+      "./public/product-cards/product-03-image-skincare-vital-c-cream/lifestyle.webp",
       "./public/product-cards/product-03-image-skincare-vital-c-cream/trust.webp"
     ]
   },
@@ -112,6 +115,7 @@
     "gallery": [
       "./public/product-cards/product-04-image-skincare-ageless-retinol/hero.webp",
       "./public/product-cards/product-04-image-skincare-ageless-retinol/detail.webp",
+      "./public/product-cards/product-04-image-skincare-ageless-retinol/lifestyle.webp",
       "./public/product-cards/product-04-image-skincare-ageless-retinol/trust.webp"
     ]
   },
@@ -141,6 +145,7 @@
     "gallery": [
       "./public/product-cards/product-05-image-skincare-daily-prevention-spf30/hero.webp",
       "./public/product-cards/product-05-image-skincare-daily-prevention-spf30/detail.webp",
+      "./public/product-cards/product-05-image-skincare-daily-prevention-spf30/lifestyle.webp",
       "./public/product-cards/product-05-image-skincare-daily-prevention-spf30/trust.webp"
     ]
   },
@@ -170,6 +175,7 @@
     "gallery": [
       "./public/product-cards/product-06-image-skincare-daily-prevention-spf75/hero.webp",
       "./public/product-cards/product-06-image-skincare-daily-prevention-spf75/detail.webp",
+      "./public/product-cards/product-06-image-skincare-daily-prevention-spf75/lifestyle.webp",
       "./public/product-cards/product-06-image-skincare-daily-prevention-spf75/trust.webp"
     ]
   },
@@ -198,6 +204,7 @@
     "gallery": [
       "./public/product-cards/product-07-charlotte-tilbury-pillow-talk/hero.webp",
       "./public/product-cards/product-07-charlotte-tilbury-pillow-talk/detail.webp",
+      "./public/product-cards/product-07-charlotte-tilbury-pillow-talk/lifestyle.webp",
       "./public/product-cards/product-07-charlotte-tilbury-pillow-talk/trust.webp"
     ]
   },
@@ -226,6 +233,7 @@
     "gallery": [
       "./public/product-cards/product-08-hourglass-curator-eyeshadow/hero.webp",
       "./public/product-cards/product-08-hourglass-curator-eyeshadow/detail.webp",
+      "./public/product-cards/product-08-hourglass-curator-eyeshadow/lifestyle.webp",
       "./public/product-cards/product-08-hourglass-curator-eyeshadow/trust.webp"
     ]
   },
@@ -254,6 +262,7 @@
     "gallery": [
       "./public/product-cards/product-09-hourglass-ambient-lighting-palette/hero.webp",
       "./public/product-cards/product-09-hourglass-ambient-lighting-palette/detail.webp",
+      "./public/product-cards/product-09-hourglass-ambient-lighting-palette/lifestyle.webp",
       "./public/product-cards/product-09-hourglass-ambient-lighting-palette/trust.webp"
     ]
   },
@@ -282,6 +291,7 @@
     "gallery": [
       "./public/product-cards/product-10-hourglass-ambient-lighting-blush/hero.webp",
       "./public/product-cards/product-10-hourglass-ambient-lighting-blush/detail.webp",
+      "./public/product-cards/product-10-hourglass-ambient-lighting-blush/lifestyle.webp",
       "./public/product-cards/product-10-hourglass-ambient-lighting-blush/trust.webp"
     ]
   },
@@ -309,6 +319,7 @@
     "gallery": [
       "./public/product-cards/product-11-charlotte-tilbury-hollywood-contour/hero.webp",
       "./public/product-cards/product-11-charlotte-tilbury-hollywood-contour/detail.webp",
+      "./public/product-cards/product-11-charlotte-tilbury-hollywood-contour/lifestyle.webp",
       "./public/product-cards/product-11-charlotte-tilbury-hollywood-contour/trust.webp"
     ]
   },
@@ -338,6 +349,7 @@
     "gallery": [
       "./public/product-cards/product-12-image-md-restoring-youth-serum/hero.webp",
       "./public/product-cards/product-12-image-md-restoring-youth-serum/detail.webp",
+      "./public/product-cards/product-12-image-md-restoring-youth-serum/lifestyle.webp",
       "./public/product-cards/product-12-image-md-restoring-youth-serum/trust.webp"
     ]
   }
