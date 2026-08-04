@@ -1,6 +1,6 @@
 /**
- * Beauty Supply — Main JavaScript
- * Logic for Catalog filtering, Product Detail hydrating, and URL query handling.
+ * Beauty Supply — Main JavaScript v3.0
+ * Enhanced Catalog filtering, Product Detail, and URL query handling
  */
 
 // Utility: Extract URL Query Parameters
@@ -50,8 +50,21 @@ function initCatalogPage() {
   let allProducts = [];
 
   const base = getBasePath();
+  
+  // Show loading state
+  container.innerHTML = `
+    <div class="loading">
+      <div class="skeleton" style="height: 380px; margin-bottom: 1rem;"></div>
+      <div class="skeleton" style="height: 380px; margin-bottom: 1rem;"></div>
+      <div class="skeleton" style="height: 380px;"></div>
+    </div>
+  `;
+
   fetch(`${base}assets/data/products.json`)
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) throw new Error('Network response was not ok');
+      return res.json();
+    })
     .then(products => {
       allProducts = products;
       applyFilters();
@@ -59,11 +72,14 @@ function initCatalogPage() {
     .catch(err => {
       console.error('Error fetching products:', err);
       container.innerHTML = `
-        <div style="grid-column: 1/-1; text-align: center; padding: var(--space-8) 0;">
-          <p style="color: var(--color-error); margin-bottom: var(--space-4);">Не удалось загрузить каталог товаров.</p>
-          <a href="https://t.me/BEAUTYSUPPLYMSKBOT" target="_blank" rel="noopener noreferrer" class="btn btn-accent btn-sm">Связаться с нами в Telegram</a>
+        <div class="empty-state">
+          <div class="empty-state-icon">📦</div>
+          <h3>Не удалось загрузить каталог</h3>
+          <p class="text-muted">Проверьте подключение к интернету или попробуйте позже.</p>
+          <a href="https://t.me/BEAUTYSUPPLYMSKBOT" target="_blank" rel="noopener noreferrer" class="btn btn-accent btn-sm" style="margin-top: 1rem;">Связаться с нами в Telegram</a>
         </div>
       `;
+      if (countElement) countElement.textContent = '';
     });
 
   function applyFilters() {
@@ -85,16 +101,16 @@ function initCatalogPage() {
     });
 
     if (countElement) {
-      countElement.textContent = `Найдено товаров: ${filtered.length}`;
+      countElement.textContent = `Найдено: ${filtered.length} ${getProductWord(filtered.length)}`;
     }
 
     if (filtered.length === 0) {
       container.innerHTML = `
-        <div style="grid-column: 1/-1; text-align: center; padding: var(--space-12) 0;">
-          <div style="font-size: 3rem; margin-bottom: var(--space-4);">🔍</div>
+        <div class="empty-state">
+          <div class="empty-state-icon">🔍</div>
           <h3>Товары не найдены</h3>
-          <p style="color: var(--color-muted);">Попробуйте изменить параметры фильтра или поисковый запрос.</p>
-          <button id="reset-filters-btn" class="btn btn-outline btn-sm" style="margin-top: var(--space-4);">Сбросить фильтры</button>
+          <p class="text-muted">Попробуйте изменить параметры фильтра или поисковый запрос.</p>
+          <button id="reset-filters-btn" class="btn btn-outline btn-sm" style="margin-top: 1rem;">Сбросить фильтры</button>
         </div>
       `;
       const resetBtn = document.getElementById('reset-filters-btn');
@@ -104,19 +120,53 @@ function initCatalogPage() {
           if (filterCategory) filterCategory.value = '';
           if (filterGoal) filterGoal.value = '';
           if (searchInput) searchInput.value = '';
+          // Clear URL params
+          const url = new URL(window.location);
+          url.searchParams.delete('brand');
+          url.searchParams.delete('category');
+          url.searchParams.delete('goal');
+          window.history.replaceState({}, '', url);
           applyFilters();
         });
       }
     } else {
       container.innerHTML = filtered.map(p => renderProductCard(p)).join('');
+      
+      // Update URL with filter params
+      const url = new URL(window.location);
+      if (brandVal) url.searchParams.set('brand', brandVal);
+      else url.searchParams.delete('brand');
+      if (catVal) url.searchParams.set('category', catVal);
+      else url.searchParams.delete('category');
+      if (goalVal) url.searchParams.set('goal', goalVal);
+      else url.searchParams.delete('goal');
+      window.history.replaceState({}, '', url);
     }
   }
 
-  // Listeners
+  // Helper for Russian plural
+  function getProductWord(count) {
+    const lastTwo = count % 100;
+    const lastOne = count % 10;
+    if (lastTwo >= 11 && lastTwo <= 14) return 'товаров';
+    if (lastOne === 1) return 'товар';
+    if (lastOne >= 2 && lastOne <= 4) return 'товара';
+    return 'товаров';
+  }
+
+  // Debounce search input
+  let searchTimeout;
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(applyFilters, 300);
+    });
+  }
+
+  // Listeners for dropdowns
   if (filterBrand) filterBrand.addEventListener('change', applyFilters);
   if (filterCategory) filterCategory.addEventListener('change', applyFilters);
   if (filterGoal) filterGoal.addEventListener('change', applyFilters);
-  if (searchInput) searchInput.addEventListener('input', applyFilters);
 }
 
 /**
@@ -135,14 +185,18 @@ function initProductDetailPage() {
   }
 
   fetch(`${base}assets/data/products.json`)
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) throw new Error('Network response was not ok');
+      return res.json();
+    })
     .then(products => {
       const product = products.find(p => p.slug === slug);
       if (!product) {
         detailContainer.innerHTML = `
-          <div class="text-center" style="padding: var(--space-16) 0;">
+          <div class="text-center empty-state" style="padding: var(--space-16) 0;">
+            <div class="empty-state-icon">📦</div>
             <h2>Товар не найден</h2>
-            <p>Запрошенный товар не существует или снят с продажи.</p>
+            <p class="text-muted">Запрошенный товар не существует или снят с продажи.</p>
             <a href="${base}pages/catalog.html" class="btn btn-primary" style="margin-top: var(--space-4);">Вернуться в каталог</a>
           </div>
         `;
@@ -210,31 +264,33 @@ function initProductDetailPage() {
 
       detailContainer.innerHTML = `
         <!-- Breadcrumbs -->
-        <nav aria-label="Хлебные крошки" style="margin-bottom: var(--space-6); font-size: var(--text-xs); color: var(--color-muted);">
-          <a href="${base}index.html">Главная</a> &gt; 
-          <a href="${base}pages/catalog.html">Каталог</a> &gt; 
-          <a href="${base}pages/catalog.html?category=${product.category}">${catName}</a> &gt; 
+        <nav aria-label="Хлебные крошки" style="margin-bottom: var(--space-6); font-size: var(--text-sm); color: var(--color-muted);">
+          <a href="${base}index.html" style="color: var(--color-accent-dark);">Главная</a> 
+          <span aria-hidden="true"> › </span>
+          <a href="${base}pages/catalog.html" style="color: var(--color-accent-dark);">Каталог</a> 
+          <span aria-hidden="true"> › </span>
+          <a href="${base}pages/catalog.html?category=${product.category}" style="color: var(--color-accent-dark);">${catName}</a> 
+          <span aria-hidden="true"> › </span>
           <span style="color: var(--color-primary); font-weight: 600;">${product.name}</span>
         </nav>
 
-        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-10); align-items: start;">
+        <div class="product-detail-grid">
           <!-- Product Media Column -->
-          <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-6); text-align: center;">
+          <div class="product-gallery">
             <img 
               id="main-product-image"
               src="${imageSrc}" 
               alt="${product.brand} — ${product.name} (Оригинал США)" 
-              style="width: 100%; max-width: 500px; height: auto; border-radius: var(--radius-sm); margin: 0 auto; transition: opacity 0.2s;"
               width="600"
               height="600"
-              loading="lazy"
+              loading="eager"
               decoding="async"
             >
             ${(product.gallery && product.gallery.length > 1) ? `
-            <div class="product-gallery-thumbs" style="display: flex; justify-content: center; gap: 0.5rem; margin-top: var(--space-4); flex-wrap: wrap;">
+            <div class="product-gallery-thumbs" style="display: flex; justify-content: center; gap: 0.5rem; margin-top: var(--space-4); flex-wrap: wrap;" role="list" aria-label="Галерея товара">
               ${product.gallery.map((gImg, idx) => {
                 const thSrc = gImg.replace('./', base);
-                return `<button type="button" class="gallery-thumb-btn" style="border: 2px solid ${idx === 0 ? 'var(--color-accent)' : 'transparent'}; border-radius: var(--radius-sm); padding: 2px; background: none; cursor: pointer; transition: all 0.2s;" onclick="const mImg=document.getElementById('main-product-image'); if(mImg){mImg.src='${thSrc}';} document.querySelectorAll('.gallery-thumb-btn').forEach(b => b.style.borderColor='transparent'); this.style.borderColor='var(--color-accent)';" aria-label="Показать ракурс ${idx + 1}">
+                return `<button type="button" class="gallery-thumb-btn" style="border: 2px solid ${idx === 0 ? 'var(--color-accent)' : 'transparent'}; border-radius: var(--radius-sm); padding: 2px; background: none; cursor: pointer; transition: all 0.2s;" onclick="const mImg=document.getElementById('main-product-image'); if(mImg){mImg.src='${thSrc}';} document.querySelectorAll('.gallery-thumb-btn').forEach(b => b.style.borderColor='transparent'); this.style.borderColor='var(--color-accent)';" aria-label="Показать ракурс ${idx + 1}" role="listitem">
                   <img src="${thSrc}" alt="" style="width: 56px; height: 56px; object-fit: cover; border-radius: 4px;" loading="lazy" decoding="async">
                 </button>`;
               }).join('')}
@@ -254,29 +310,29 @@ function initProductDetailPage() {
               ${product.name}
             </h1>
             
-            <div style="font-size: var(--text-2xl); font-weight: 700; color: var(--color-primary); margin-bottom: var(--space-6); display: flex; align-items: center; gap: var(--space-4);">
+            <div style="font-size: var(--text-2xl); font-weight: 700; color: var(--color-primary); margin-bottom: var(--space-6); display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap;">
               <span>${formatPrice(product.price)}</span>
-              <span style="font-size: var(--text-xs); background: #E8F5E9; color: var(--color-success); padding: 0.25rem 0.75rem; border-radius: var(--radius-full); font-weight: 600;">
+              <span class="badge badge-success" style="font-size: var(--text-xs);">
                 ✓ В наличии в Москве
               </span>
             </div>
 
-            <p style="font-size: var(--text-base); color: var(--color-secondary); margin-bottom: var(--space-6); line-height: 1.6;">
+            <p style="font-size: var(--text-base); color: var(--color-secondary); margin-bottom: var(--space-6); line-height: 1.7;">
               ${product.shortDescription}
             </p>
 
-            <div style="background: var(--color-surface-elevated); padding: var(--space-6); border-radius: var(--radius-md); border: 1px solid var(--color-border); margin-bottom: var(--space-8);">
-              <h4 style="font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-muted); margin-bottom: var(--space-3);">Характеристики</h4>
-              <table style="width: 100%; font-size: var(--text-sm); border-collapse: collapse;">
-                <tr style="border-bottom: 1px solid var(--color-border);"><td style="padding: 0.5rem 0; color: var(--color-muted);">Бренд</td><td style="font-weight: 600; text-align: right;">${product.brand}</td></tr>
-                <tr style="border-bottom: 1px solid var(--color-border);"><td style="padding: 0.5rem 0; color: var(--color-muted);">Категория</td><td style="font-weight: 600; text-align: right;">${catName}</td></tr>
-                <tr style="border-bottom: 1px solid var(--color-border);"><td style="padding: 0.5rem 0; color: var(--color-muted);">Объем / Вес</td><td style="font-weight: 600; text-align: right;">${product.volume || 'Стандарт'}</td></tr>
-                <tr><td style="padding: 0.5rem 0; color: var(--color-muted);">Страна производства</td><td style="font-weight: 600; text-align: right;">США (USA) 🇺🇸</td></tr>
+            <div class="product-specs">
+              <h4>Характеристики</h4>
+              <table class="table" role="table">
+                <tr><td style="color: var(--color-muted);">Бренд</td><td style="font-weight: 600;">${product.brand}</td></tr>
+                <tr><td style="color: var(--color-muted);">Категория</td><td style="font-weight: 600;">${catName}</td></tr>
+                <tr><td style="color: var(--color-muted);">Объем / Вес</td><td style="font-weight: 600;">${product.volume || 'Стандарт'}</td></tr>
+                <tr><td style="color: var(--color-muted);">Страна</td><td style="font-weight: 600;">США 🇺🇸</td></tr>
               </table>
             </div>
 
             <!-- Action CTAs -->
-            <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+            <div style="display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-8);">
               <a href="${product.telegramLink}" target="_blank" rel="noopener noreferrer" class="btn btn-accent btn-lg" style="width: 100%;">
                 💬 Заказать через Telegram Bot
               </a>
@@ -285,7 +341,7 @@ function initProductDetailPage() {
               </a>
             </div>
 
-            <div style="margin-top: var(--space-6); font-size: var(--text-xs); color: var(--color-muted); display: flex; gap: var(--space-4); align-items: center;">
+            <div style="margin-top: var(--space-6); font-size: var(--text-xs); color: var(--color-muted); display: flex; gap: var(--space-4); flex-wrap: wrap; align-items: center;">
               <span>🛡️ Гарантия подлинности</span>
               <span>📦 Доставка по всей РФ</span>
               <span>⭐ Avito 5.0</span>
@@ -293,31 +349,31 @@ function initProductDetailPage() {
           </div>
         </div>
 
-        <!-- Full Description Tab Section -->
-        <section style="margin-top: var(--space-16); background: var(--color-surface); padding: var(--space-8); border-radius: var(--radius-md); border: 1px solid var(--color-border);">
+        <!-- Full Description -->
+        <section style="margin-top: var(--space-16); background: var(--color-surface); padding: var(--space-8); border-radius: var(--radius-lg); border: 1px solid var(--color-border);">
           <h2 style="font-size: var(--text-2xl); margin-bottom: var(--space-4);">Подробное описание и применение</h2>
           <p style="font-size: var(--text-base); color: var(--color-secondary); line-height: 1.8;">
             ${product.fullDescription}
           </p>
-          <div style="margin-top: var(--space-6); padding: var(--space-4); background: var(--color-accent-subtle); border-left: 3px solid var(--color-accent); font-size: var(--text-xs); color: var(--color-secondary);">
+          <div style="margin-top: var(--space-6); padding: var(--space-4); background: var(--color-accent-subtle); border-left: 3px solid var(--color-accent); font-size: var(--text-sm); color: var(--color-secondary); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
             <strong>Обратите внимание:</strong> Все поставляемые продукты закупаются исключительно в официальных бутиках и у авторизованных дистрибьюторов в США. По запросу предоставляются дополнительные фото батч-кодов и упаковки.
           </div>
         </section>
 
-        <!-- FAQ / Trust Objections Card -->
-        <section class="product-faq-card" style="margin-top: var(--space-12); background: var(--color-surface); padding: var(--space-8); border-radius: var(--radius-md); border: 1px solid var(--color-border);">
-          <h2 style="font-size: var(--text-xl); margin-bottom: var(--space-6);">Часто задаваемые вопросы о доставке и гарантии</h2>
-          <div class="faq-item" style="margin-bottom: var(--space-6); border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-4);">
-            <h3 style="font-size: var(--text-base); color: var(--color-primary); margin-bottom: var(--space-2);">🛡️ Как проверить оригинальность косметики?</h3>
-            <p style="font-size: var(--text-sm); color: var(--color-secondary); line-height: 1.6;">Мы закупаем продукцию только у официальных дистрибьюторов в США. Вы можете проверить подлинность по батч-коду на упаковке (через онлайн-сервисы CheckFresh или CheckCosmetic) при получении заказа.</p>
-          </div>
-          <div class="faq-item" style="margin-bottom: var(--space-6); border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-4);">
-            <h3 style="font-size: var(--text-base); color: var(--color-primary); margin-bottom: var(--space-2);">📦 Какие сроки и стоимость доставки?</h3>
-            <p style="font-size: var(--text-sm); color: var(--color-secondary); line-height: 1.6;">По Москве доступна курьерская доставка в день заказа или на следующий день. По России отправляем через СДЭК, Боксберри или Авито Доставку (от 2 до 5 дней с возможностью проверки при получении).</p>
+        <!-- FAQ / Trust Objections -->
+        <section style="margin-top: var(--space-12); background: var(--color-surface); padding: var(--space-8); border-radius: var(--radius-lg); border: 1px solid var(--color-border);">
+          <h2 style="font-size: var(--text-xl); margin-bottom: var(--space-6);">Часто задаваемые вопросы</h2>
+          <div class="faq-item">
+            <h3 class="faq-question">🛡️ Как проверить оригинальность косметики?</h3>
+            <p class="faq-answer">Мы закупаем продукцию только у официальных дистрибьюторов в США. Вы можете проверить подлинность по батч-коду на упаковке при получении заказа.</p>
           </div>
           <div class="faq-item">
-            <h3 style="font-size: var(--text-base); color: var(--color-primary); margin-bottom: var(--space-2);">💬 Как оформить заказ?</h3>
-            <p style="font-size: var(--text-sm); color: var(--color-secondary); line-height: 1.6;">Нажмите кнопку «Заказать через Telegram Bot» — наш официальный бот поможет выбрать способ доставки и подтвердит наличие за 1 минуту.</p>
+            <h3 class="faq-question">📦 Какие сроки и стоимость доставки?</h3>
+            <p class="faq-answer">По Москве доступна курьерская доставка в день заказа или на следующий день. По России отправляем через СДЭК или Авито Доставку (от 2 до 5 дней).</p>
+          </div>
+          <div class="faq-item" style="margin-bottom: 0; padding-bottom: 0; border-bottom: none;">
+            <h3 class="faq-question">💬 Как оформить заказ?</h3>
+            <p class="faq-answer">Нажмите кнопку «Заказать через Telegram Bot» — наш официальный бот поможет выбрать способ доставки и подтвердит наличие за 1 минуту.</p>
           </div>
         </section>
 
@@ -342,6 +398,12 @@ function initProductDetailPage() {
     })
     .catch(err => {
       console.error('Error loading product details:', err);
-      detailContainer.innerHTML = '<p>Произошла ошибка при загрузке товара.</p>';
+      detailContainer.innerHTML = `
+        <div class="text-center empty-state" style="padding: var(--space-16) 0;">
+          <div class="empty-state-icon">⚠️</div>
+          <h2>Произошла ошибка</h2>
+          <p class="text-muted">Не удалось загрузить информацию о товаре. Попробуйте обновить страницу.</p>
+        </div>
+      `;
     });
 }

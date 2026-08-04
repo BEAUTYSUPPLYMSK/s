@@ -1,33 +1,53 @@
 /* ==========================================================================
-   Beauty Supply — Design Tokens v2.0
-   Brand Aesthetic: Premium Editorial Minimalism (Champagne Gold `#C9A96E`)
+   Beauty Supply — Design Tokens v3.0 (Elegant Light Beauty Aesthetic)
+   Brand Aesthetic: Premium Rose Quartz & Cream Luxury
+   Color Direction: Blush, Rose Quartz, Lavender, Mauve, Cream, Pearl
    ========================================================================== */
 
 :root {
-  /* Color Palette */
-  --color-bg: #FAF8F5;
-  --color-surface: #FFFFFF;
-  --color-surface-elevated: #F6F3EE;
+  /* === Color Palette: Elegant Light Beauty === */
   
-  --color-primary: #111111;
-  --color-primary-light: #2A2A2A;
+  /* Backgrounds - Soft, Airy Surfaces */
+  --color-bg: #FDFBF9;                    /* Warm Pearl White */
+  --color-bg-soft: #FAF7F4;               /* Soft Cream */
+  --color-surface: #FFFFFF;               /* Pure White Cards */
+  --color-surface-elevated: #F8F4F0;     /* Warm Ivory */
+  --color-surface-blush: #FBF5F3;        /* Blush Tint */
+  --color-surface-rose: #F9F0ED;         /* Rose Quartz */
+  --color-surface-lavender: #F5F3FA;     /* Soft Lavender */
   
-  --color-accent: #C9A96E;
-  --color-accent-dark: #A6864B;
-  --color-accent-light: #F4EDE3;
-  --color-accent-subtle: #FAF5EE;
+  /* Primary Text - Sophisticated Plum/Charcoal */
+  --color-primary: #2D2438;              /* Deep Plum */
+  --color-primary-light: #4A3F54;         /* Soft Plum */
   
-  --color-secondary: #4A4A4A;
-  --color-muted: #767676;
-  --color-border: #E8E3DA;
-  --color-border-dark: #D1C9BC;
+  /* Accent Colors - Rose Gold & Mauve */
+  --color-accent: #C4917B;               /* Rose Gold / Dusty Rose */
+  --color-accent-dark: #9E7263;          /* Deep Rose */
+  --color-accent-light: #F2E6E1;          /* Blush Cream */
+  --color-accent-subtle: #FAF5F3;        /* Pearl Blush */
+  --color-accent-mauve: #B8A5C4;         /* Soft Mauve */
+  --color-accent-lavender: #A5B4C4;      /* Lavender Blue */
   
-  --color-success: #2E7D32;
-  --color-warning: #ED6C02;
-  --color-error: #D32F2F;
+  /* Secondary Text & Borders */
+  --color-secondary: #5C5060;            /* Muted Plum */
+  --color-muted: #8A8090;                /* Soft Gray Plum */
+  --color-border: #EDE8E3;               /* Warm Gray Border */
+  --color-border-dark: #D8D0C8;          /* Deeper Border */
+  
+  /* Semantic Colors */
+  --color-success: #5B8A6E;              /* Sage Green */
+  --color-warning: #C9A96E;               /* Gold */
+  --color-error: #C47B7B;                /* Muted Rose */
+  
+  /* Shadows - Soft, Refined */
+  --shadow-sm: 0 1px 3px rgba(45, 36, 56, 0.04), 0 1px 2px rgba(45, 36, 56, 0.02);
+  --shadow-md: 0 4px 16px rgba(45, 36, 56, 0.06), 0 1px 4px rgba(45, 36, 56, 0.03);
+  --shadow-lg: 0 12px 32px rgba(45, 36, 56, 0.08), 0 2px 8px rgba(45, 36, 56, 0.04);
+  --shadow-rose: 0 4px 20px rgba(196, 145, 123, 0.2);
+  --shadow-soft: 0 8px 30px rgba(45, 36, 56, 0.06);
 
-  /* Typography */
-  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  /* === Typography === */
+  --font-heading: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   /* Font Scales (Clamp responsive) */
@@ -37,41 +57,45 @@
   --text-lg: clamp(1.125rem, 1.05rem + 0.35vw, 1.25rem);    /* 18-20px */
   --text-xl: clamp(1.35rem, 1.22rem + 0.65vw, 1.625rem);    /* 21.6-26px */
   --text-2xl: clamp(1.75rem, 1.5rem + 1.25vw, 2.25rem);     /* 28-36px */
-  --text-3xl: clamp(2.25rem, 1.85rem + 2vw, 3rem);         /* 36-48px */
-  --text-hero: clamp(2.5rem, 2rem + 2.5vw, 3.75rem);        /* 40-60px */
+  --text-3xl: clamp(2.25rem, 1.85rem + 2vw, 3rem);          /* 36-48px */
+  --text-hero: clamp(2.5rem, 2rem + 2.5vw, 3.75rem);         /* 40-60px */
 
-  /* Spacing Scale (8px base) */
-  --space-1: 0.25rem;  /* 4px */
-  --space-2: 0.5rem;   /* 8px */
-  --space-3: 0.75rem;  /* 12px */
-  --space-4: 1.00rem;  /* 16px */
-  --space-5: 1.25rem;  /* 20px */
-  --space-6: 1.50rem;  /* 24px */
-  --space-8: 2.00rem;  /* 32px */
-  --space-10: 2.50rem; /* 40px */
-  --space-12: 3.00rem; /* 48px */
-  --space-16: 4.00rem; /* 64px */
-  --space-20: 5.00rem; /* 80px */
-  --space-24: 6.00rem; /* 96px */
+  /* === Spacing Scale (8px base) === */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1.00rem;   /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.50rem;   /* 24px */
+  --space-8: 2.00rem;   /* 32px */
+  --space-10: 2.50rem;  /* 40px */
+  --space-12: 3.00rem;  /* 48px */
+  --space-16: 4.00rem;  /* 64px */
+  --space-20: 5.00rem;  /* 80px */
+  --space-24: 6.00rem;  /* 96px */
 
-  /* Container & Grid */
+  /* === Container & Grid === */
   --container-max: 1280px;
   --container-pad: clamp(1rem, 4vw, 2.5rem);
 
-  /* Border Radius */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 16px;
+  /* === Border Radius === */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
   --radius-full: 9999px;
 
-  /* Shadows - Minimal & Editorial */
-  --shadow-sm: 0 1px 3px rgba(17, 17, 17, 0.04), 0 1px 2px rgba(17, 17, 17, 0.02);
-  --shadow-md: 0 4px 16px rgba(17, 17, 17, 0.06), 0 1px 4px rgba(17, 17, 17, 0.03);
-  --shadow-lg: 0 12px 32px rgba(17, 17, 17, 0.08), 0 2px 8px rgba(17, 17, 17, 0.04);
-  --shadow-gold: 0 4px 20px rgba(201, 169, 110, 0.25);
-
-  /* Transitions */
+  /* === Transitions === */
   --transition-fast: 150ms ease;
   --transition-normal: 250ms ease;
   --transition-slow: 350ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* === Reduced Motion === */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0ms;
+    --transition-normal: 0ms;
+    --transition-slow: 0ms;
+  }
 }
