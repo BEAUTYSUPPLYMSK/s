@@ -325,3 +325,39 @@
     text-align: center;
   }
 }
+
+/* ==========================================================================
+   Enhanced Product Cards & Accessibility Elevation
+   ========================================================================== */
+
+.product-card:focus-within {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.product-card-badges {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.product-card-badge-top {
+  background-color: var(--color-accent);
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+.product-faq-card {
+  box-shadow: var(--shadow-sm);
+}
+
+.product-faq-card .faq-item:last-child {
+  border-bottom: none !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
