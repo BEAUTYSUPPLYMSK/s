@@ -58,7 +58,12 @@ function initCatalogPage() {
     })
     .catch(err => {
       console.error('Error fetching products:', err);
-      container.innerHTML = '<p class="text-center" style="grid-column: 1/-1;">Ошибка загрузки каталога. Пожалуйста, обновите страницу.</p>';
+      container.innerHTML = `
+        <div style="grid-column: 1/-1; text-align: center; padding: var(--space-8) 0;">
+          <p style="color: var(--color-error); margin-bottom: var(--space-4);">Не удалось загрузить каталог товаров.</p>
+          <a href="https://t.me/BEAUTYSUPPLYMSKBOT" target="_blank" rel="noopener noreferrer" class="btn btn-accent btn-sm">Связаться с нами в Telegram</a>
+        </div>
+      `;
     });
 
   function applyFilters() {
@@ -149,7 +154,32 @@ function initProductDetailPage() {
       
       // Update Canonical URL
       const canonical = document.querySelector('link[rel="canonical"]');
-      if (canonical) canonical.href = `https://beautysupplymsk.github.io/1/pages/product.html?slug=${product.slug}`;
+      if (canonical) canonical.href = `https://beautysupplymsk.github.io/s/pages/product.html?slug=${product.slug}`;
+
+      // Update Meta Description & Open Graph tags dynamically
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.content = `${product.brand} ${product.name} (${product.volume || ''}) — 100% оригинал из США. ${product.shortDescription} В наличии в Москве с быстрой доставкой.`;
+
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) ogTitle.content = `${product.brand} ${product.name} — Beauty Supply`;
+
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogDesc) ogDesc.content = `${product.shortDescription} 100% оригинальная косметика из США.`;
+
+      const ogUrl = document.querySelector('meta[property="og:url"]');
+      if (ogUrl) ogUrl.content = `https://beautysupplymsk.github.io/s/pages/product.html?slug=${product.slug}`;
+
+      const ogImg = document.querySelector('meta[property="og:image"]');
+      if (ogImg) ogImg.content = `https://beautysupplymsk.github.io/s/${product.image.replace('./', '')}`;
+
+      const twTitle = document.querySelector('meta[name="twitter:title"]');
+      if (twTitle) twTitle.content = `${product.brand} ${product.name} — Beauty Supply`;
+
+      const twDesc = document.querySelector('meta[name="twitter:description"]');
+      if (twDesc) twDesc.content = `${product.shortDescription}`;
+
+      const twImg = document.querySelector('meta[name="twitter:image"]');
+      if (twImg) twImg.content = `https://beautysupplymsk.github.io/s/${product.image.replace('./', '')}`;
 
       // Dynamically inject Product Schema (JSON-LD)
       const schemaScript = document.createElement('script');
@@ -158,7 +188,7 @@ function initProductDetailPage() {
         "@context": "https://schema.org",
         "@type": "Product",
         "name": `${product.brand} ${product.name}`,
-        "image": `https://beautysupplymsk.github.io/1/${product.image.replace('./', '')}`,
+        "image": `https://beautysupplymsk.github.io/s/${product.image.replace('./', '')}`,
         "description": product.shortDescription,
         "brand": {
           "@type": "Brand",
@@ -169,7 +199,7 @@ function initProductDetailPage() {
           "priceCurrency": product.currency,
           "price": product.price,
           "availability": product.inStock ? "https://schema.org/InStock" : "https://schema.org/PreOrder",
-          "url": `https://beautysupplymsk.github.io/1/pages/product.html?slug=${product.slug}`
+          "url": `https://beautysupplymsk.github.io/s/pages/product.html?slug=${product.slug}`
         }
       });
       document.head.appendChild(schemaScript);
@@ -194,8 +224,10 @@ function initProductDetailPage() {
               src="${imageSrc}" 
               alt="${product.brand} — ${product.name}" 
               style="width: 100%; max-width: 500px; height: auto; border-radius: var(--radius-sm); margin: 0 auto;"
-              width="800"
-              height="800"
+              width="600"
+              height="600"
+              loading="lazy"
+              decoding="async"
             >
             <div class="flex flex-center" style="margin-top: var(--space-4); gap: var(--space-2);">
               <span class="badge">🇺🇸 Поставка из США</span>
@@ -259,6 +291,23 @@ function initProductDetailPage() {
           </p>
           <div style="margin-top: var(--space-6); padding: var(--space-4); background: var(--color-accent-subtle); border-left: 3px solid var(--color-accent); font-size: var(--text-xs); color: var(--color-secondary);">
             <strong>Обратите внимание:</strong> Все поставляемые продукты закупаются исключительно в официальных бутиках и у авторизованных дистрибьюторов в США. По запросу предоставляются дополнительные фото батч-кодов и упаковки.
+          </div>
+        </section>
+
+        <!-- FAQ / Trust Objections Card -->
+        <section class="product-faq-card" style="margin-top: var(--space-12); background: var(--color-surface); padding: var(--space-8); border-radius: var(--radius-md); border: 1px solid var(--color-border);">
+          <h2 style="font-size: var(--text-xl); margin-bottom: var(--space-6);">Часто задаваемые вопросы о доставке и гарантии</h2>
+          <div class="faq-item" style="margin-bottom: var(--space-6); border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-4);">
+            <h3 style="font-size: var(--text-base); color: var(--color-primary); margin-bottom: var(--space-2);">🛡️ Как проверить оригинальность косметики?</h3>
+            <p style="font-size: var(--text-sm); color: var(--color-secondary); line-height: 1.6;">Мы закупаем продукцию только у официальных дистрибьюторов в США. Вы можете проверить подлинность по батч-коду на упаковке (через онлайн-сервисы CheckFresh или CheckCosmetic) при получении заказа.</p>
+          </div>
+          <div class="faq-item" style="margin-bottom: var(--space-6); border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-4);">
+            <h3 style="font-size: var(--text-base); color: var(--color-primary); margin-bottom: var(--space-2);">📦 Какие сроки и стоимость доставки?</h3>
+            <p style="font-size: var(--text-sm); color: var(--color-secondary); line-height: 1.6;">По Москве доступна курьерская доставка в день заказа или на следующий день. По России отправляем через СДЭК, Боксберри или Авито Доставку (от 2 до 5 дней с возможностью проверки при получении).</p>
+          </div>
+          <div class="faq-item">
+            <h3 style="font-size: var(--text-base); color: var(--color-primary); margin-bottom: var(--space-2);">💬 Как оформить заказ?</h3>
+            <p style="font-size: var(--text-sm); color: var(--color-secondary); line-height: 1.6;">Нажмите кнопку «Заказать через Telegram Bot» — наш официальный бот поможет выбрать способ доставки и подтвердит наличие за 1 минуту.</p>
           </div>
         </section>
 
