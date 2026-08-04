@@ -123,16 +123,25 @@ function renderProductCard(product) {
   const imageSrc = product.image.replace('./', base);
   const detailUrl = `${base}pages/product.html?slug=${product.slug}`;
 
+  const originBadge = product.origin === 'USA' ? '🇺🇸 100% США' : product.origin;
+  const bestBadge = product.isBestseller ? '<span class="badge badge-accent product-card-badge-top" style="margin-left: 4px;">Хит продаж</span>' : '';
+  const stockBadge = product.inStock ? '<span class="badge" style="background: #E8F5E9; color: #2E7D32; margin-left: 4px;">✓ В наличии</span>' : '';
+
   return `
     <article class="product-card" data-category="${product.category}" data-brand="${product.brand}">
       <div class="product-card-image-wrap">
-        <span class="badge product-card-badge">${product.origin}</span>
-        <a href="${detailUrl}">
+        <div class="product-card-badges" style="position: absolute; top: var(--space-3); left: var(--space-3); z-index: 2; display: flex; flex-wrap: wrap; gap: 0.35rem;">
+          <span class="badge product-card-badge" style="position: static;">${originBadge}</span>
+          ${bestBadge}
+          ${stockBadge}
+        </div>
+        <a href="${detailUrl}" aria-label="Карточка товара: ${product.brand} — ${product.name}">
           <img 
             src="${imageSrc}" 
-            alt="${product.brand} — ${product.name}" 
+            alt="${product.brand} — ${product.name} (Оригинал США)" 
             class="product-card-image"
             loading="lazy"
+            decoding="async"
             width="400"
             height="400"
           >
@@ -145,13 +154,16 @@ function renderProductCard(product) {
         </h3>
         <p class="product-card-desc">${product.shortDescription}</p>
         <div class="product-card-footer">
-          <div class="product-card-price">${formatPrice(product.price)}</div>
+          <div>
+            <div class="product-card-price">${formatPrice(product.price)}</div>
+            <div style="font-size: var(--text-xs); color: var(--color-success); font-weight: 500;">Доставка по РФ</div>
+          </div>
           <div class="flex" style="gap: 0.5rem;">
-            <a href="${product.telegramLink}" target="_blank" rel="noopener noreferrer" class="btn btn-accent btn-sm" title="Заказать через Telegram Bot">
-              Заказать
+            <a href="${product.telegramLink}" target="_blank" rel="noopener noreferrer" class="btn btn-accent btn-sm" title="Заказать через Telegram Bot" aria-label="Заказать ${product.name} через Telegram">
+              💬 Заказать
             </a>
-            <a href="${detailUrl}" class="btn btn-outline btn-sm">
-              Инфо
+            <a href="${detailUrl}" class="btn btn-outline btn-sm" aria-label="Подробнее о товаре ${product.name}">
+              Подробнее
             </a>
           </div>
         </div>
@@ -168,7 +180,7 @@ function renderProductCard(product) {
 function renderReviewCard(review) {
   const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
   return `
-    <div class="review-card" style="background: var(--color-surface); padding: var(--space-6); border-radius: var(--radius-md); border: 1px solid var(--color-border); display: flex; flex-direction: column; justify-content: space-between;">
+    <article class="review-card" aria-label="Отзыв клиента" style="background: var(--color-surface); padding: var(--space-6); border-radius: var(--radius-md); border: 1px solid var(--color-border); display: flex; flex-direction: column; justify-content: space-between;">
       <div>
         <div class="flex" style="justify-content: space-between; align-items: center; margin-bottom: var(--space-3);">
           <strong style="font-size: var(--text-base); color: var(--color-primary);">${review.author}</strong>
@@ -184,7 +196,7 @@ function renderReviewCard(review) {
       <div style="margin-top: var(--space-4); font-size: var(--text-xs); color: var(--color-muted); border-top: 1px solid var(--color-border); padding-top: var(--space-2);">
         Товар: ${review.product || 'Премиальная косметика США'}
       </div>
-    </div>
+    </article>
   `;
 }
 
