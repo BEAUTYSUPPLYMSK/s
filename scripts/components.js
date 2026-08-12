@@ -260,7 +260,7 @@ function renderFooter() {
               <a href="${base}pages/delivery.html">Оплата и доставка</a>
               <a href="${base}pages/reviews.html">Отзывы клиентов</a>
               <a href="${base}pages/contacts.html">Контакты</a>
-              <a href="${base}pages/legal/privacy.html">Политика конфифиденциальности</a>
+              <a href="${base}pages/legal/privacy.html">Политика конфиденциальности</a>
               <a href="${base}pages/legal/offer.html">Публичная оферта</a>
             </nav>
           </div>

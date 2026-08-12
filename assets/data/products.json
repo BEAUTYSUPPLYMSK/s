@@ -1,5 +1,35 @@
 [
   {
+    "id": "image-vol-u-lift-face",
+    "slug": "image-vol-u-lift-face",
+    "brand": "Image Skincare",
+    "line": "VOL.U.lift",
+    "name": "Крем для лица VOL.U.lift",
+    "category": "face-care",
+    "goals": [
+      "lifting",
+      "anti-age",
+      "hydration"
+    ],
+    "origin": "USA",
+    "price": 11599,
+    "currency": "RUB",
+    "inStock": true,
+    "preorderAvailable": true,
+    "isBestseller": true,
+    "volume": "57 г",
+    "shortDescription": "Премиальный антивозрастной крем с эффектом лифтинга и восстановления объема.",
+    "fullDescription": "Роскошный крем для лица, разработанный для разглаживания кожи и возвращения ей четких контуров. Стимулирует естественное обновление, придает коже плотность и сияние. Идеально под макияж или как вечерний уход.",
+    "image": "./public/product-cards/product-02-image-skincare-vol-u-lift-face/hero.webp",
+    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_image-vol-u-lift-face",
+    "gallery": [
+      "./public/product-cards/product-02-image-skincare-vol-u-lift-face/hero.webp",
+      "./public/product-cards/product-02-image-skincare-vol-u-lift-face/detail.webp",
+      "./public/product-cards/product-02-image-skincare-vol-u-lift-face/lifestyle.webp",
+      "./public/product-cards/product-02-image-skincare-vol-u-lift-face/trust.webp"
+    ]
+  },
+  {
     "id": "image-vol-u-lift-body",
     "slug": "image-vol-u-lift-body",
     "brand": "Image Skincare",
@@ -30,41 +60,11 @@
     ]
   },
   {
-    "id": "image-vol-u-lift-face",
-    "slug": "image-vol-u-lift-face",
-    "brand": "Image Skincare",
-    "line": "VOL.U.lift",
-    "name": "Крем для лица VOL.U.lift",
-    "category": "face-care",
-    "goals": [
-      "lifting",
-      "anti-age",
-      "hydration"
-    ],
-    "origin": "USA",
-    "price": 11599,
-    "currency": "RUB",
-    "inStock": true,
-    "preorderAvailable": true,
-    "isBestseller": true,
-    "volume": "50 мл",
-    "shortDescription": "Премиальный антивозрастной крем с эффектом лифтинга и восстановления объема.",
-    "fullDescription": "Роскошный крем для лица, разработанный для разглаживания кожи и возвращения ей четких контуров. Стимулирует естественное обновление, придает коже плотность и сияние. Идеально под макияж или как вечерний уход.",
-    "image": "./public/product-cards/product-02-image-skincare-vol-u-lift-face/hero.webp",
-    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_image-vol-u-lift-face",
-    "gallery": [
-      "./public/product-cards/product-02-image-skincare-vol-u-lift-face/hero.webp",
-      "./public/product-cards/product-02-image-skincare-vol-u-lift-face/detail.webp",
-      "./public/product-cards/product-02-image-skincare-vol-u-lift-face/lifestyle.webp",
-      "./public/product-cards/product-02-image-skincare-vol-u-lift-face/trust.webp"
-    ]
-  },
-  {
     "id": "image-vitamin-c-night-cream",
     "slug": "image-vitamin-c-night-cream",
     "brand": "Image Skincare",
     "line": "Vital C",
-    "name": "Ночной крем с витамином C",
+    "name": "Ночной крем с витамином C Vital C",
     "category": "face-care",
     "goals": [
       "glow",
@@ -77,7 +77,7 @@
     "inStock": true,
     "preorderAvailable": true,
     "isBestseller": true,
-    "volume": "50 мл",
+    "volume": "57 г",
     "shortDescription": "Питательный ночной крем для глубокого увлажнения и выравнивания тона кожи.",
     "fullDescription": "Формула с несколькими стабильными формами витамина C питает и насыщает антиоксидантами в ночное время. Утром кожа выглядит отдохнувшей, свежей и сияющей. Устраняет сухость и тусклый цвет лица.",
     "image": "./public/product-cards/product-03-image-skincare-vital-c-cream/hero.webp",
@@ -93,8 +93,8 @@
     "id": "image-retinol-03-night-cream",
     "slug": "image-retinol-03-night-cream",
     "brand": "Image Skincare",
-    "line": "Ageless",
-    "name": "Ночной крем с ретинолом 0.3%",
+    "line": "Ageless+",
+    "name": "Ночной крем с ретинолом Ageless+ 0.3%",
     "category": "face-care",
     "goals": [
       "anti-age",
@@ -107,7 +107,7 @@
     "inStock": true,
     "preorderAvailable": true,
     "isBestseller": false,
-    "volume": "50 мл",
+    "volume": "50 г",
     "shortDescription": "Высокоактивный инкапсулированный ретинол для разглаживания текстуры.",
     "fullDescription": "Профессиональный обновляющий крем с ретинолом 0.3%. Ускоряет клеточное обновление, разглаживает мелкие морщинки и улучшает плотность кожи. Систематический уход для визуального омоложения.",
     "image": "./public/product-cards/product-04-image-skincare-ageless-retinol/hero.webp",
@@ -137,7 +137,7 @@
     "inStock": true,
     "preorderAvailable": true,
     "isBestseller": true,
-    "volume": "73 мл",
+    "volume": "73 г",
     "shortDescription": "Ежедневный увлажняющий крем с широким спектром защиты SPF 30.",
     "fullDescription": "Инновационное средство 2-в-1: дневной увлажняющий крем и надежный солнцезащитный фильтр. Быстро впитывается, не оставляет белых следов и липкости, является прекрасной базой под декоративную косметику.",
     "image": "./public/product-cards/product-05-image-skincare-daily-prevention-spf30/hero.webp",
@@ -154,7 +154,7 @@
     "slug": "image-smart-cream-spf-75",
     "brand": "Image Skincare",
     "line": "Daily Prevention",
-    "name": "Smart-крем SPF 75",
+    "name": "Smart-крем SPF 75 Daily Prevention",
     "category": "spf",
     "goals": [
       "spf",
@@ -167,7 +167,7 @@
     "inStock": true,
     "preorderAvailable": true,
     "isBestseller": false,
-    "volume": "50 мл",
+    "volume": "48 г",
     "shortDescription": "Максимальная фотозащита и умное восстановление кожи.",
     "fullDescription": "Ультравысокая защита от UVA/UVB лучей и синего света. Интеллектуальный комплекс защищает клетки от фотостарения и неблагоприятного воздействия внешней среды. Рекомендован после инвазивных процедур.",
     "image": "./public/product-cards/product-06-image-skincare-daily-prevention-spf75/hero.webp",
@@ -180,11 +180,71 @@
     ]
   },
   {
+    "id": "image-md-restoring-youth-serum",
+    "slug": "image-md-restoring-youth-serum",
+    "brand": "Image Skincare",
+    "line": "Image MD",
+    "name": "IMAGE MD Restoring Youth Serum",
+    "category": "face-care",
+    "goals": [
+      "anti-age",
+      "lifting",
+      "renewal"
+    ],
+    "origin": "USA",
+    "price": 10800,
+    "currency": "RUB",
+    "inStock": true,
+    "preorderAvailable": true,
+    "isBestseller": false,
+    "volume": "30 мл",
+    "shortDescription": "Высококонцентрированная омолаживающая сыворотка с пептидами.",
+    "fullDescription": "Разработана дерматологами. Уникальная система доставки инкапсулированных ингредиентов обеспечивает их глубокое проникновение. Заметно повышает упругость кожи и подтягивает овал лица.",
+    "image": "./public/product-cards/product-12-image-md-restoring-youth-serum/hero.webp",
+    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_image-md-restoring-youth-serum",
+    "gallery": [
+      "./public/product-cards/product-12-image-md-restoring-youth-serum/hero.webp",
+      "./public/product-cards/product-12-image-md-restoring-youth-serum/detail.webp",
+      "./public/product-cards/product-12-image-md-restoring-youth-serum/lifestyle.webp",
+      "./public/product-cards/product-12-image-md-restoring-youth-serum/trust.webp"
+    ]
+  },
+  {
+    "id": "image-md-biotech-cream",
+    "slug": "image-md-biotech-cream",
+    "brand": "Image Skincare",
+    "line": "Image MD",
+    "name": "IMAGE MD Biotech крем",
+    "category": "face-care",
+    "goals": [
+      "anti-age",
+      "renewal",
+      "lifting"
+    ],
+    "origin": "USA",
+    "price": 11800,
+    "currency": "RUB",
+    "inStock": true,
+    "preorderAvailable": true,
+    "isBestseller": false,
+    "volume": "50 г",
+    "shortDescription": "Высокотехнологичный антивозрастной крем для поддержания молодости кожи.",
+    "fullDescription": "Высокотехнологичный антивозрастной крем IMAGE MD для поддержания молодости кожи. Геномный AI-флавоноид и Phyto NAD+ Booster борются с морщинами, дряблостью и тусклым цветом лица. Клиническая биотехнологическая формула интенсивного действия для комплексного омоложения и восстановления кожного барьера.",
+    "image": "./public/product-cards/product-13-image-md-biotech-cream/hero.webp",
+    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_image-md-biotech-cream",
+    "gallery": [
+      "./public/product-cards/product-13-image-md-biotech-cream/hero.webp",
+      "./public/product-cards/product-13-image-md-biotech-cream/detail.webp",
+      "./public/product-cards/product-13-image-md-biotech-cream/lifestyle.webp",
+      "./public/product-cards/product-13-image-md-biotech-cream/trust.webp"
+    ]
+  },
+  {
     "id": "charlotte-tilbury-pillow-talk-eyeshadow",
     "slug": "charlotte-tilbury-pillow-talk-eyeshadow",
     "brand": "Charlotte Tilbury",
     "line": "Luxury Palette",
-    "name": "Pillow Talk тени для век",
+    "name": "Pillow Talk палетка теней",
     "category": "makeup",
     "goals": [
       "glow",
@@ -209,11 +269,39 @@
     ]
   },
   {
+    "id": "charlotte-tilbury-contour-wand",
+    "slug": "charlotte-tilbury-contour-wand",
+    "brand": "Charlotte Tilbury",
+    "line": "Hollywood",
+    "name": "Hollywood Contour Wand",
+    "category": "makeup",
+    "goals": [
+      "makeup"
+    ],
+    "origin": "USA",
+    "price": 3500,
+    "currency": "RUB",
+    "inStock": true,
+    "preorderAvailable": true,
+    "isBestseller": false,
+    "volume": "12 мл",
+    "shortDescription": "Жидкий скульптор Hollywood Contour Wand со спонжем-аппликатором.",
+    "fullDescription": "Создает естественные мягкие тени на лице, легко растушевывается пальцами или кистью. Легкая гелевая текстура с деликатным полуматовым финишем.",
+    "image": "./public/product-cards/product-11-charlotte-tilbury-hollywood-contour/hero.webp",
+    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_charlotte-tilbury-contour-wand",
+    "gallery": [
+      "./public/product-cards/product-11-charlotte-tilbury-hollywood-contour/hero.webp",
+      "./public/product-cards/product-11-charlotte-tilbury-hollywood-contour/detail.webp",
+      "./public/product-cards/product-11-charlotte-tilbury-hollywood-contour/lifestyle.webp",
+      "./public/product-cards/product-11-charlotte-tilbury-hollywood-contour/trust.webp"
+    ]
+  },
+  {
     "id": "hourglass-eyeshadow-palette",
     "slug": "hourglass-eyeshadow-palette",
     "brand": "Hourglass",
     "line": "Curator",
-    "name": "Hourglass тени для век",
+    "name": "Curator палетка теней Minimalist",
     "category": "makeup",
     "goals": [
       "makeup",
@@ -242,7 +330,7 @@
     "slug": "hourglass-ambient-palette",
     "brand": "Hourglass",
     "line": "Ambient Lighting",
-    "name": "Hourglass палетка для лица",
+    "name": "Ambient Lighting палетка для лица",
     "category": "makeup",
     "goals": [
       "glow",
@@ -271,7 +359,7 @@
     "slug": "hourglass-ambient-blush",
     "brand": "Hourglass",
     "line": "Ambient Lighting",
-    "name": "Hourglass румяна Ambient Lighting",
+    "name": "Ambient Lighting румяна",
     "category": "makeup",
     "goals": [
       "glow",
@@ -293,64 +381,6 @@
       "./public/product-cards/product-10-hourglass-ambient-lighting-blush/detail.webp",
       "./public/product-cards/product-10-hourglass-ambient-lighting-blush/lifestyle.webp",
       "./public/product-cards/product-10-hourglass-ambient-lighting-blush/trust.webp"
-    ]
-  },
-  {
-    "id": "charlotte-tilbury-contour-wand",
-    "slug": "charlotte-tilbury-contour-wand",
-    "brand": "Charlotte Tilbury",
-    "line": "Hollywood",
-    "name": "Charlotte Tilbury контуринг",
-    "category": "makeup",
-    "goals": [
-      "makeup"
-    ],
-    "origin": "USA",
-    "price": 3500,
-    "currency": "RUB",
-    "inStock": true,
-    "preorderAvailable": true,
-    "isBestseller": false,
-    "volume": "12 мл",
-    "shortDescription": "Жидкий скульптор Hollywood Contour Wand со спонжем-аппликатором.",
-    "fullDescription": "Создает естественные мягкие тени на лице, легко растушевывается пальцами или кистью. Легкая гелевая текстура с деликатным полуматовым финишем.",
-    "image": "./public/product-cards/product-11-charlotte-tilbury-hollywood-contour/hero.webp",
-    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_charlotte-tilbury-contour-wand",
-    "gallery": [
-      "./public/product-cards/product-11-charlotte-tilbury-hollywood-contour/hero.webp",
-      "./public/product-cards/product-11-charlotte-tilbury-hollywood-contour/detail.webp",
-      "./public/product-cards/product-11-charlotte-tilbury-hollywood-contour/lifestyle.webp",
-      "./public/product-cards/product-11-charlotte-tilbury-hollywood-contour/trust.webp"
-    ]
-  },
-  {
-    "id": "image-md-restoring-youth-serum",
-    "slug": "image-md-restoring-youth-serum",
-    "brand": "Image Skincare",
-    "line": "Image MD",
-    "name": "Image MD Restoring Youth Serum",
-    "category": "face-care",
-    "goals": [
-      "anti-age",
-      "lifting",
-      "renewal"
-    ],
-    "origin": "USA",
-    "price": 10800,
-    "currency": "RUB",
-    "inStock": true,
-    "preorderAvailable": true,
-    "isBestseller": false,
-    "volume": "30 мл",
-    "shortDescription": "Высококонцентрированная омолаживающая сыворотка с пептидами.",
-    "fullDescription": "Разработана дерматологами. Уникальная система доставки инкапсулированных ингредиентов обеспечивает их глубокое проникновение. Заметно повышает упругость кожи и подтягивает овал лица.",
-    "image": "./public/product-cards/product-12-image-md-restoring-youth-serum/hero.webp",
-    "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_image-md-restoring-youth-serum",
-    "gallery": [
-      "./public/product-cards/product-12-image-md-restoring-youth-serum/hero.webp",
-      "./public/product-cards/product-12-image-md-restoring-youth-serum/detail.webp",
-      "./public/product-cards/product-12-image-md-restoring-youth-serum/lifestyle.webp",
-      "./public/product-cards/product-12-image-md-restoring-youth-serum/trust.webp"
     ]
   }
 ]
