@@ -10,6 +10,9 @@
   <link rel="icon" type="image/svg+xml" href="../../assets/icons/favicon.svg">
   <link rel="stylesheet" href="../../styles/main.css">
 
+  <!-- TODO: вставить код счётчика Яндекс.Метрики или Google Analytics -->
+  <!-- Инструкция: https://metrika.yandex.ru/ -->
+
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://beautysupplymsk.github.io/s/pages/legal/offer.html">
   <meta property="og:title" content="Публичная оферта интернет-магазина косметики Beauty Supply">
@@ -98,6 +101,26 @@
       renderNav('');
       renderFooter();
     });
+  </script>
+  <!-- Баннер согласия на использование cookies (152-ФЗ) -->
+  <div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Уведомление о cookies" hidden>
+    <p>Мы используем cookies для корректной работы сайта.
+       <a href="privacy.html">Политика конфиденциальности</a></p>
+    <button id="cookie-accept" type="button">Принять</button>
+  </div>
+  <script>
+    // Инициализация баннера согласия на cookies
+    (function () {
+      var banner = document.getElementById('cookie-banner');
+      var btn = document.getElementById('cookie-accept');
+      if (!localStorage.getItem('cookies_accepted')) {
+        banner.removeAttribute('hidden');
+      }
+      btn.addEventListener('click', function () {
+        localStorage.setItem('cookies_accepted', '1');
+        banner.setAttribute('hidden', '');
+      });
+    }());
   </script>
 </body>
 </html>

@@ -7,6 +7,8 @@
   <meta name="description" content="Запрашиваемая страница не найдена (ошибка 404). Перейдите в каталог премиальной уходовой и декоративной косметики из США интернет-магазина Beauty Supply.">
   <meta name="robots" content="noindex, follow">
   <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg">
+  <!-- TODO: вставить код счётчика Яндекс.Метрики или Google Analytics -->
+  <!-- Инструкция: https://metrika.yandex.ru/ -->
   <style>
     :root{--accent:#C4917B;--primary:#2D2438;}
     *{box-sizing:border-box;}
@@ -20,6 +22,11 @@
     a.ghost{background:transparent;color:var(--primary);border:2px solid #E2D6CE;}
     .brand{margin-top:34px;font-family:Georgia,serif;letter-spacing:2px;color:var(--primary);font-size:18px;}
     .brand b{color:var(--accent);}
+    #cookie-banner{position:fixed;bottom:16px;left:16px;right:16px;max-width:520px;margin:0 auto;z-index:1000;background:#ffffff;color:#2D2438;border:1px solid #EDE8E3;border-radius:12px;padding:16px 24px;box-shadow:0 12px 32px rgba(45,36,56,0.08);display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:14px;text-align:left;}
+    #cookie-banner[hidden]{display:none!important;}
+    #cookie-banner p{margin:0;color:#5C5060;line-height:1.5;}
+    #cookie-banner a{color:#8A5E50;text-decoration:underline;}
+    #cookie-accept{background:#C4917B;color:#ffffff;border:none;border-radius:6px;padding:8px 16px;font-weight:600;font-size:14px;cursor:pointer;white-space:nowrap;}
   </style>
 </head>
 <body>
@@ -33,5 +40,26 @@
     </div>
     <div class="brand">BEAUTY<b>SUPPLY</b></div>
   </main>
+
+  <!-- Баннер согласия на использование cookies (152-ФЗ) -->
+  <div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Уведомление о cookies" hidden>
+    <p>Мы используем cookies для корректной работы сайта.
+       <a href="./pages/legal/privacy.html">Политика конфиденциальности</a></p>
+    <button id="cookie-accept" type="button">Принять</button>
+  </div>
+  <script>
+    // Инициализация баннера согласия на cookies
+    (function () {
+      var banner = document.getElementById('cookie-banner');
+      var btn = document.getElementById('cookie-accept');
+      if (!localStorage.getItem('cookies_accepted')) {
+        banner.removeAttribute('hidden');
+      }
+      btn.addEventListener('click', function () {
+        localStorage.setItem('cookies_accepted', '1');
+        banner.setAttribute('hidden', '');
+      });
+    }());
+  </script>
 </body>
 </html>
