@@ -272,8 +272,11 @@
       renderFooter();
 
       // Load bestsellers
-      fetch('./assets/data/products.json')
-        .then(res => res.json())
+      fetch(`${getBasePath()}assets/data/products.json`)
+        .then(res => {
+          if (!res.ok) throw new Error('Network response was not ok');
+          return res.json();
+        })
         .then(products => {
           const container = document.getElementById('bestsellers-grid');
           if (container) {
@@ -281,18 +284,33 @@
             container.innerHTML = bestsellers.map(p => renderProductCard(p)).join('');
           }
         })
-        .catch(err => console.error('Error loading products:', err));
+        .catch(err => {
+          console.error('Error loading products:', err);
+          const container = document.getElementById('bestsellers-grid');
+          if (container) {
+            container.innerHTML = '<p class="error" style="grid-column: 1/-1; text-align: center; color: var(--color-muted); padding: var(--space-4) 0;">Не удалось загрузить данные. Обновите страницу.</p>';
+          }
+        });
 
       // Load reviews
-      fetch('./assets/data/reviews.json')
-        .then(res => res.json())
+      fetch(`${getBasePath()}assets/data/reviews.json`)
+        .then(res => {
+          if (!res.ok) throw new Error('Network response was not ok');
+          return res.json();
+        })
         .then(reviews => {
           const container = document.getElementById('reviews-grid');
           if (container) {
             container.innerHTML = reviews.map(r => renderReviewCard(r)).join('');
           }
         })
-        .catch(err => console.error('Error loading reviews:', err));
+        .catch(err => {
+          console.error('Error loading reviews:', err);
+          const container = document.getElementById('reviews-grid');
+          if (container) {
+            container.innerHTML = '<p class="error" style="grid-column: 1/-1; text-align: center; color: var(--color-muted); padding: var(--space-4) 0;">Не удалось загрузить отзывы. Обновите страницу.</p>';
+          }
+        });
     });
   </script>
 </body>

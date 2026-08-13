@@ -92,15 +92,24 @@
       renderNav('reviews');
       renderFooter();
 
-      fetch('../assets/data/reviews.json')
-        .then(res => res.json())
+      fetch(`${getBasePath()}assets/data/reviews.json`)
+        .then(res => {
+          if (!res.ok) throw new Error('Network response was not ok');
+          return res.json();
+        })
         .then(reviews => {
           const container = document.getElementById('all-reviews-grid');
           if (container) {
             container.innerHTML = reviews.map(r => renderReviewCard(r)).join('');
           }
         })
-        .catch(err => console.error('Error loading reviews:', err));
+        .catch(err => {
+          console.error('Error loading reviews:', err);
+          const container = document.getElementById('all-reviews-grid');
+          if (container) {
+            container.innerHTML = '<p class="error" style="grid-column: 1/-1; text-align: center; color: var(--color-muted); padding: var(--space-8) 0;">Не удалось загрузить отзывы. Обновите страницу.</p>';
+          }
+        });
     });
   </script>
 </body>

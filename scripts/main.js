@@ -257,7 +257,8 @@ function initProductDetailPage() {
       document.head.appendChild(schemaScript);
 
       // Render Product Detail Content
-      const imageSrc = product.image.replace('./', base);
+      const rawImage = (product.image || '').replace(/^\.\//, '');
+      const imageSrc = `${base}${rawImage}`;
       const catName = CATEGORY_NAMES[product.category] || product.category;
 
       detailContainer.innerHTML = `
@@ -288,7 +289,7 @@ function initProductDetailPage() {
             ${(product.gallery && product.gallery.length > 1) ? `
             <div class="product-gallery-thumbs" style="display: flex; justify-content: center; gap: 0.5rem; margin-top: var(--space-4); flex-wrap: wrap;" role="list" aria-label="Галерея товара">
               ${product.gallery.map((gImg, idx) => {
-                const thSrc = gImg.replace('./', base);
+                const thSrc = `${base}${(gImg || '').replace(/^\.\//, '')}`;
                 return `<button type="button" class="gallery-thumb-btn" style="border: 2px solid ${idx === 0 ? 'var(--color-accent)' : 'transparent'}; border-radius: var(--radius-sm); padding: 2px; background: none; cursor: pointer; transition: all 0.2s;" onclick="const mImg=document.getElementById('main-product-image'); if(mImg){mImg.src='${thSrc}';} document.querySelectorAll('.gallery-thumb-btn').forEach(b => b.style.borderColor='transparent'); this.style.borderColor='var(--color-accent)';" aria-label="Показать ракурс ${idx + 1}" role="listitem">
                   <img src="${thSrc}" alt="" style="width: 56px; height: 56px; object-fit: cover; border-radius: 4px;" loading="lazy" decoding="async">
                 </button>`;
