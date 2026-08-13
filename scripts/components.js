@@ -154,6 +154,7 @@ function renderTrustBar(targetId = 'trust-bar-container') {
 function renderProductCard(product) {
   const base = getBasePath();
   const imageSrc = product.image.replace('./', base);
+  const imageSrc400 = imageSrc.replace('hero.webp', 'hero-400.webp');
   const detailUrl = `${base}pages/product.html?slug=${encodeURIComponent(product.slug)}`;
   const placeholder = `${base}assets/images/placeholder.svg`;
 
@@ -177,6 +178,8 @@ function renderProductCard(product) {
         <a href="${detailUrl}" aria-label="Смотреть ${safeBrand} ${safeName}">
           <img 
             src="${imageSrc}" 
+            srcset="${imageSrc400} 400w, ${imageSrc} 800w"
+            sizes="(max-width:700px) 90vw, (max-width:1100px) 45vw, 320px"
             alt="${safeBrand} — ${safeName}" 
             class="product-card-image"
             loading="lazy"
