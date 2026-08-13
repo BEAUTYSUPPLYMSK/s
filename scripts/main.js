@@ -9,6 +9,18 @@ function getQueryParam(param) {
   return urlParams.get(param);
 }
 
+// Utility: Set or update meta tags dynamically
+function setMetaTag(name, content, attr = 'name') {
+  if (!content) return;
+  let tag = document.querySelector(`meta[${attr}="${name}"]`);
+  if (!tag) {
+    tag = document.createElement('meta');
+    tag.setAttribute(attr, name);
+    document.head.appendChild(tag);
+  }
+  tag.setAttribute('content', content);
+}
+
 // Category Mapping Helper (RU translation)
 const CATEGORY_NAMES = {
   'face-care': 'Уход за лицом',
@@ -205,56 +217,59 @@ function initProductDetailPage() {
       document.title = `${product.brand} ${product.name} — Купить в Beauty Supply`;
       
       // Update Canonical URL
-      const canonical = document.querySelector('link[rel="canonical"]');
-      if (canonical) canonical.href = `https://beautysupplymsk.github.io/s/pages/product.html?slug=${encodeURIComponent(product.slug)}`;
+      let canonical = document.querySelector('link[rel="canonical"]');
+      if (!canonical) {
+        canonical = document.createElement('link');
+        canonical.setAttribute('rel', 'canonical');
+        document.head.appendChild(canonical);
+      }
+      const canonicalUrl = `https://beautysupplymsk.github.io/s/pages/product.html?slug=${encodeURIComponent(product.slug)}`;
+      canonical.setAttribute('href', canonicalUrl);
 
       // Update Meta Description & Open Graph tags dynamically
-      const metaDesc = document.querySelector('meta[name="description"]');
-      if (metaDesc) metaDesc.content = `${product.brand} ${product.name} (${product.volume || ''}) — 100% оригинал из США. ${product.shortDescription} В наличии в Москве с быстрой доставкой.`;
+      const rawDesc = product.shortDescription || product.fullDescription || '';
+      const metaDesc = rawDesc.length > 160 ? rawDesc.substring(0, 157) + '...' : rawDesc;
+      const rawImage = (product.image || '').replace(/^\.\//, '');
+      const absImage = `https://beautysupplymsk.github.io/s/${rawImage}`;
 
-      const ogTitle = document.querySelector('meta[property="og:title"]');
-      if (ogTitle) ogTitle.content = `${product.brand} ${product.name} — Beauty Supply`;
+      setMetaTag('description', metaDesc, 'name');
+      setMetaTag('og:title', `${product.brand} ${product.name} — Beauty Supply`, 'property');
+      setMetaTag('og:description', metaDesc, 'property');
+      setMetaTag('og:url', canonicalUrl, 'property');
+      setMetaTag('og:image', absImage, 'property');
+      setMetaTag('og:type', 'product', 'property');
+      setMetaTag('twitter:title', `${product.brand} ${product.name} — Beauty Supply`, 'name');
+      setMetaTag('twitter:description', metaDesc, 'name');
+      setMetaTag('twitter:image', absImage, 'name');
 
-      const ogDesc = document.querySelector('meta[property="og:description"]');
-      if (ogDesc) ogDesc.content = `${product.shortDescription} 100% оригинальная косметика из США.`;
-
-      const ogUrl = document.querySelector('meta[property="og:url"]');
-      if (ogUrl) ogUrl.content = `https://beautysupplymsk.github.io/s/pages/product.html?slug=${encodeURIComponent(product.slug)}`;
-
-      const ogImg = document.querySelector('meta[property="og:image"]');
-      if (ogImg) ogImg.content = `https://beautysupplymsk.github.io/s/${product.image.replace('./', '')}`;
-
-      const twTitle = document.querySelector('meta[name="twitter:title"]');
-      if (twTitle) twTitle.content = `${product.brand} ${product.name} — Beauty Supply`;
-
-      const twDesc = document.querySelector('meta[name="twitter:description"]');
-      if (twDesc) twDesc.content = `${product.shortDescription}`;
-
-      const twImg = document.querySelector('meta[name="twitter:image"]');
-      if (twImg) twImg.content = `https://beautysupplymsk.github.io/s/${product.image.replace('./', '')}`;
-
-      // Dynamically inject Product Schema (JSON-LD)
-      const schemaScript = document.createElement('script');
-      schemaScript.type = 'application/ld+json';
-      schemaScript.text = JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Product",
-        "name": `${product.brand} ${product.name}`,
-        "image": `https://beautysupplymsk.github.io/s/${product.image.replace('./', '')}`,
-        "description": product.shortDescription,
-        "brand": {
-          "@type": "Brand",
-          "name": product.brand
-        },
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": product.currency,
-          "price": product.price,
-          "availability": product.inStock ? "https://schema.org/InStock" : "https://schema.org/PreOrder",
-          "url": `https://beautysupplymsk.github.io/s/pages/product.html?slug=${encodeURIComponent(product.slug)}`
+      // Dynamically inject Product Schema (JSON-LD) if required fields are present
+      if (product.name && rawImage && (product.price !== undefined || product.priceCurrency || product.currency)) {
+        let schemaScript = document.getElementById('dynamic-product-schema');
+        if (!schemaScript) {
+          schemaScript = document.createElement('script');
+          schemaScript.id = 'dynamic-product-schema';
+          schemaScript.type = 'application/ld+json';
+          document.head.appendChild(schemaScript);
         }
-      });
-      document.head.appendChild(schemaScript);
+        schemaScript.text = JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "name": `${product.brand} ${product.name}`,
+          "image": absImage,
+          "description": metaDesc,
+          "brand": {
+            "@type": "Brand",
+            "name": product.brand
+          },
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": product.currency || 'RUB',
+            "price": product.price,
+            "availability": product.inStock ? "https://schema.org/InStock" : "https://schema.org/PreOrder",
+            "url": canonicalUrl
+          }
+        });
+      }
 
       // Render Product Detail Content
       const rawImage = (product.image || '').replace(/^\.\//, '');
