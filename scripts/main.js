@@ -17,16 +17,6 @@ const CATEGORY_NAMES = {
   'makeup': 'Декоративная косметика'
 };
 
-const GOAL_NAMES = {
-  'anti-age': 'Омоложение & Anti-age',
-  'lifting': 'Лифтинг & Плотность',
-  'spf': 'Защита от солнца (SPF)',
-  'glow': 'Сияние & Тон',
-  'hydration': 'Увлажнение',
-  'body': 'Тонус тела',
-  'renewal': 'Обновление кожи'
-};
-
 /**
  * Initialize Catalog Page Filter & Render
  */
@@ -93,9 +83,9 @@ function initCatalogPage() {
       const matchCategory = !catVal || p.category === catVal;
       const matchGoal = !goalVal || (p.goals && p.goals.includes(goalVal));
       const matchSearch = !searchVal || 
-        p.name.toLowerCase().includes(searchVal) || 
-        p.brand.toLowerCase().includes(searchVal) || 
-        p.shortDescription.toLowerCase().includes(searchVal);
+        (p.name && p.name.toLowerCase().includes(searchVal)) || 
+        (p.brand && p.brand.toLowerCase().includes(searchVal)) || 
+        (p.shortDescription && p.shortDescription.toLowerCase().includes(searchVal));
 
       return matchBrand && matchCategory && matchGoal && matchSearch;
     });
@@ -203,12 +193,20 @@ function initProductDetailPage() {
         return;
       }
 
+      const safeName = escapeHtml(product.name);
+      const safeBrand = escapeHtml(product.brand);
+      const safeLine = escapeHtml(product.line || '');
+      const safeShort = escapeHtml(product.shortDescription);
+      const safeFull = escapeHtml(product.fullDescription);
+      const safeVolume = escapeHtml(product.volume || 'Стандарт');
+      const placeholder = `${base}assets/images/placeholder.svg`;
+
       // Update Page Title
       document.title = `${product.brand} ${product.name} — Купить в Beauty Supply`;
       
       // Update Canonical URL
       const canonical = document.querySelector('link[rel="canonical"]');
-      if (canonical) canonical.href = `https://beautysupplymsk.github.io/s/pages/product.html?slug=${product.slug}`;
+      if (canonical) canonical.href = `https://beautysupplymsk.github.io/s/pages/product.html?slug=${encodeURIComponent(product.slug)}`;
 
       // Update Meta Description & Open Graph tags dynamically
       const metaDesc = document.querySelector('meta[name="description"]');
@@ -221,7 +219,7 @@ function initProductDetailPage() {
       if (ogDesc) ogDesc.content = `${product.shortDescription} 100% оригинальная косметика из США.`;
 
       const ogUrl = document.querySelector('meta[property="og:url"]');
-      if (ogUrl) ogUrl.content = `https://beautysupplymsk.github.io/s/pages/product.html?slug=${product.slug}`;
+      if (ogUrl) ogUrl.content = `https://beautysupplymsk.github.io/s/pages/product.html?slug=${encodeURIComponent(product.slug)}`;
 
       const ogImg = document.querySelector('meta[property="og:image"]');
       if (ogImg) ogImg.content = `https://beautysupplymsk.github.io/s/${product.image.replace('./', '')}`;
@@ -253,7 +251,7 @@ function initProductDetailPage() {
           "priceCurrency": product.currency,
           "price": product.price,
           "availability": product.inStock ? "https://schema.org/InStock" : "https://schema.org/PreOrder",
-          "url": `https://beautysupplymsk.github.io/s/pages/product.html?slug=${product.slug}`
+          "url": `https://beautysupplymsk.github.io/s/pages/product.html?slug=${encodeURIComponent(product.slug)}`
         }
       });
       document.head.appendChild(schemaScript);
@@ -269,9 +267,9 @@ function initProductDetailPage() {
           <span aria-hidden="true"> › </span>
           <a href="${base}pages/catalog.html" style="color: var(--color-accent-dark);">Каталог</a> 
           <span aria-hidden="true"> › </span>
-          <a href="${base}pages/catalog.html?category=${product.category}" style="color: var(--color-accent-dark);">${catName}</a> 
+          <a href="${base}pages/catalog.html?category=${encodeURIComponent(product.category)}" style="color: var(--color-accent-dark);">${escapeHtml(catName)}</a> 
           <span aria-hidden="true"> › </span>
-          <span style="color: var(--color-primary); font-weight: 600;">${product.name}</span>
+          <span style="color: var(--color-primary); font-weight: 600;">${safeName}</span>
         </nav>
 
         <div class="product-detail-grid">
@@ -280,11 +278,12 @@ function initProductDetailPage() {
             <img 
               id="main-product-image"
               src="${imageSrc}" 
-              alt="${product.brand} — ${product.name} (Оригинал США)" 
+              alt="${safeBrand} — ${safeName} (Оригинал США)" 
               width="600"
               height="600"
               loading="eager"
               decoding="async"
+              onerror="this.onerror=null;this.src='${placeholder}'"
             >
             ${(product.gallery && product.gallery.length > 1) ? `
             <div class="product-gallery-thumbs" style="display: flex; justify-content: center; gap: 0.5rem; margin-top: var(--space-4); flex-wrap: wrap;" role="list" aria-label="Галерея товара">
@@ -304,10 +303,10 @@ function initProductDetailPage() {
           <!-- Product Summary Column -->
           <div>
             <div style="font-size: var(--text-sm); font-weight: 700; color: var(--color-accent-dark); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: var(--space-2);">
-              ${product.brand} ${product.line ? '· ' + product.line : ''}
+              ${safeBrand} ${safeLine ? '· ' + safeLine : ''}
             </div>
             <h1 style="font-size: var(--text-3xl); margin-bottom: var(--space-4); line-height: 1.2;">
-              ${product.name}
+              ${safeName}
             </h1>
             
             <div style="font-size: var(--text-2xl); font-weight: 700; color: var(--color-primary); margin-bottom: var(--space-6); display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap;">
@@ -318,15 +317,15 @@ function initProductDetailPage() {
             </div>
 
             <p style="font-size: var(--text-base); color: var(--color-secondary); margin-bottom: var(--space-6); line-height: 1.7;">
-              ${product.shortDescription}
+              ${safeShort}
             </p>
 
             <div class="product-specs">
               <h4>Характеристики</h4>
               <table class="table" role="table">
-                <tr><td style="color: var(--color-muted);">Бренд</td><td style="font-weight: 600;">${product.brand}</td></tr>
-                <tr><td style="color: var(--color-muted);">Категория</td><td style="font-weight: 600;">${catName}</td></tr>
-                <tr><td style="color: var(--color-muted);">Объем / Вес</td><td style="font-weight: 600;">${product.volume || 'Стандарт'}</td></tr>
+                <tr><td style="color: var(--color-muted);">Бренд</td><td style="font-weight: 600;">${safeBrand}</td></tr>
+                <tr><td style="color: var(--color-muted);">Категория</td><td style="font-weight: 600;">${escapeHtml(catName)}</td></tr>
+                <tr><td style="color: var(--color-muted);">Объем / Вес</td><td style="font-weight: 600;">${safeVolume}</td></tr>
                 <tr><td style="color: var(--color-muted);">Страна</td><td style="font-weight: 600;">США 🇺🇸</td></tr>
               </table>
             </div>
@@ -353,7 +352,7 @@ function initProductDetailPage() {
         <section style="margin-top: var(--space-16); background: var(--color-surface); padding: var(--space-8); border-radius: var(--radius-lg); border: 1px solid var(--color-border);">
           <h2 style="font-size: var(--text-2xl); margin-bottom: var(--space-4);">Подробное описание и применение</h2>
           <p style="font-size: var(--text-base); color: var(--color-secondary); line-height: 1.8;">
-            ${product.fullDescription}
+            ${safeFull}
           </p>
           <div style="margin-top: var(--space-6); padding: var(--space-4); background: var(--color-accent-subtle); border-left: 3px solid var(--color-accent); font-size: var(--text-sm); color: var(--color-secondary); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
             <strong>Обратите внимание:</strong> Все поставляемые продукты закупаются исключительно в официальных бутиках и у авторизованных дистрибьюторов в США. По запросу предоставляются дополнительные фото батч-кодов и упаковки.

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800" role="img" aria-label="Изображение товара обновляется">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FDFBF9"/>
+      <stop offset="1" stop-color="#F8F4F0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#bg)"/>
+  <g opacity="0.5">
+    <rect x="300" y="250" width="200" height="230" rx="14" fill="none" stroke="#E2D6CE" stroke-width="3"/>
+    <circle cx="400" cy="330" r="34" fill="none" stroke="#E2D6CE" stroke-width="3"/>
+    <path d="M330 460 L470 360 L470 460 Z" fill="none" stroke="#E2D6CE" stroke-width="3"/>
+  </g>
+  <text x="400" y="540" font-family="Georgia, 'Times New Roman', serif" font-size="40" fill="#2D2438" text-anchor="middle" letter-spacing="3">BEAUTY<tspan fill="#C4917B">SUPPLY</tspan></text>
+  <text x="400" y="582" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#B8A5C4" text-anchor="middle">Фото обновляется</text>
+</svg>

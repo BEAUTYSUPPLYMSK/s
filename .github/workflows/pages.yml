@@ -25,6 +25,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         
+      - name: Exclude internal/working assets from public deploy
+        run: rm -rf original-product-images product-card-assets AUDIT_REPORT.md
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
         

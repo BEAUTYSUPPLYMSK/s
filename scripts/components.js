@@ -16,6 +16,16 @@ function formatPrice(price) {
   return new Intl.NumberFormat('ru-RU').format(price) + ' ₽';
 }
 
+// Helper: Escape HTML to prevent XSS when injecting data-driven strings (defense-in-depth)
+function escapeHtml(str) {
+  return String(str == null ? '' : str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 /**
  * Render Header & Navigation
  * @param {string} currentPage - Unique identifier for active nav item
@@ -144,45 +154,52 @@ function renderTrustBar(targetId = 'trust-bar-container') {
 function renderProductCard(product) {
   const base = getBasePath();
   const imageSrc = product.image.replace('./', base);
-  const detailUrl = `${base}pages/product.html?slug=${product.slug}`;
+  const detailUrl = `${base}pages/product.html?slug=${encodeURIComponent(product.slug)}`;
+  const placeholder = `${base}assets/images/placeholder.svg`;
+
+  const safeName = escapeHtml(product.name);
+  const safeBrand = escapeHtml(product.brand);
+  const safeDesc = escapeHtml(product.shortDescription);
+  const safeVolume = escapeHtml(product.volume || '');
 
   const originBadge = product.origin === 'USA' ? '<span class="badge">🇺🇸 США</span>' : '';
   const bestBadge = product.isBestseller ? '<span class="badge badge-accent">Хит продаж</span>' : '';
   const stockBadge = product.inStock ? '<span class="badge badge-success">✓ В наличии</span>' : '';
 
   return `
-    <article class="product-card" data-category="${product.category}" data-brand="${product.brand}">
+    <article class="product-card" data-category="${escapeHtml(product.category)}" data-brand="${safeBrand}">
       <div class="product-card-image-wrap">
         <div class="product-card-badges">
           ${originBadge}
           ${bestBadge}
           ${stockBadge}
         </div>
-        <a href="${detailUrl}" aria-label="Смотреть ${product.brand} ${product.name}">
+        <a href="${detailUrl}" aria-label="Смотреть ${safeBrand} ${safeName}">
           <img 
             src="${imageSrc}" 
-            alt="${product.brand} — ${product.name}" 
+            alt="${safeBrand} — ${safeName}" 
             class="product-card-image"
             loading="lazy"
             decoding="async"
             width="400"
             height="400"
+            onerror="this.onerror=null;this.src='${placeholder}'"
           >
         </a>
       </div>
       <div class="product-card-body">
-        <div class="product-card-brand">${product.brand}${product.volume ? ' · ' + product.volume : ''}</div>
+        <div class="product-card-brand">${safeBrand}${safeVolume ? ' · ' + safeVolume : ''}</div>
         <h3 class="product-card-title">
-          <a href="${detailUrl}">${product.name}</a>
+          <a href="${detailUrl}">${safeName}</a>
         </h3>
-        <p class="product-card-desc">${product.shortDescription}</p>
+        <p class="product-card-desc">${safeDesc}</p>
         <div class="product-card-footer">
           <div>
             <div class="product-card-price">${formatPrice(product.price)}</div>
             <div style="font-size: var(--text-xs); color: var(--color-success); font-weight: 500;">Доставка по РФ</div>
           </div>
           <div class="product-card-actions">
-            <a href="${product.telegramLink}" target="_blank" rel="noopener noreferrer" class="btn btn-accent btn-sm" title="Заказать через Telegram Bot" aria-label="Заказать ${product.name} через Telegram">
+            <a href="${product.telegramLink}" target="_blank" rel="noopener noreferrer" class="btn btn-accent btn-sm" title="Заказать через Telegram Bot" aria-label="Заказать ${safeName} через Telegram">
               💬 Заказать
             </a>
           </div>
@@ -198,24 +215,25 @@ function renderProductCard(product) {
  * @returns {string} HTML string
  */
 function renderReviewCard(review) {
-  const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+  const rating = Math.max(0, Math.min(5, Number(review.rating) || 0));
+  const stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
   const verifiedBadge = review.verifiedPurchase ? '<span class="badge badge-success" style="margin-left: 0.5rem;">✓ Проверено</span>' : '';
   
   return `
-    <article class="review-card" aria-label="Отзыв клиента ${review.author}">
+    <article class="review-card" aria-label="Отзыв клиента ${escapeHtml(review.author)}">
       <div>
         <div class="review-header">
-          <strong class="review-author">${review.author}</strong>
-          <span class="review-stars" aria-label="${review.rating} из 5 звёзд">${stars}</span>
+          <strong class="review-author">${escapeHtml(review.author)}</strong>
+          <span class="review-stars" aria-label="${rating} из 5 звёзд">${stars}</span>
         </div>
         <div class="review-source">
-          Источник: ${review.source}${verifiedBadge}
+          Источник: ${escapeHtml(review.source)}${verifiedBadge}
         </div>
         <blockquote class="review-text">
-          «${review.text}»
+          «${escapeHtml(review.text)}»
         </blockquote>
       </div>
-      ${review.product ? `<div class="review-product">Товар: ${review.product}</div>` : ''}
+      ${review.product ? `<div class="review-product">Товар: ${escapeHtml(review.product)}</div>` : ''}
     </article>
   `;
 }
@@ -283,10 +301,4 @@ function renderFooter() {
       </div>
     </footer>
   `;
-}
-
-// Utility: Extract URL Query Parameters
-function getQueryParam(param) {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(param);
 }
