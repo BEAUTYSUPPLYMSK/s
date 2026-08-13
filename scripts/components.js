@@ -4,6 +4,8 @@
  */
 
 // Helper: Determine relative base path based on location
+// Возвращает относительный префикс для доступа к корню репозитория
+// из текущей страницы, независимо от глубины вложенности.
 function getBasePath() {
   const path = window.location.pathname;
   if (path.includes('/pages/legal/')) return '../../';
@@ -153,7 +155,8 @@ function renderTrustBar(targetId = 'trust-bar-container') {
  */
 function renderProductCard(product) {
   const base = getBasePath();
-  const imageSrc = product.image.replace('./', base);
+  const rawImage = (product.image || '').replace(/^\.\//, '');
+  const imageSrc = `${base}${rawImage}`;
   const imageSrc400 = imageSrc.replace('hero.webp', 'hero-400.webp');
   const detailUrl = `${base}pages/product.html?slug=${encodeURIComponent(product.slug)}`;
   const placeholder = `${base}assets/images/placeholder.svg`;
@@ -299,6 +302,7 @@ function renderFooter() {
 
         <div class="footer-bottom">
           <div>© 2011–2026 Beauty Supply. Все права защищены. Не является публичной офертой.</div>
+          <!-- TODO: заполнить юридические реквизиты (ИНН/ОГРН/адрес) вручную — агент не имеет права выдумывать это значение -->
           <div>beauty-supply.shop</div>
         </div>
       </div>

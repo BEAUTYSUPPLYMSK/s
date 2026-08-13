@@ -851,6 +851,60 @@
   100% { background-position: -200% 0; }
 }
 
+/* === Cookie Consent Banner (152-ФЗ) === */
+#cookie-banner {
+  position: fixed;
+  bottom: var(--space-4);
+  left: var(--space-4);
+  right: var(--space-4);
+  max-width: 520px;
+  margin: 0 auto;
+  z-index: 1000;
+  background: var(--color-surface);
+  color: var(--color-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-6);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  font-size: var(--text-sm);
+}
+
+#cookie-banner[hidden] {
+  display: none !important;
+}
+
+#cookie-banner p {
+  margin: 0;
+  color: var(--color-secondary);
+  line-height: 1.5;
+}
+
+#cookie-banner a {
+  color: var(--color-accent-dark);
+  text-decoration: underline;
+}
+
+#cookie-accept {
+  background: var(--color-accent);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-4);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--transition-fast);
+}
+
+#cookie-accept:hover {
+  background: var(--color-accent-dark);
+}
+
 /* === Print Styles === */
 @media print {
   .site-header,

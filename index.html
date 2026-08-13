@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Beauty Supply — Премиальная косметика из США в России</title>
   <meta name="description" content="Официальный поставщик оригинальной косметики из США: Image Skincare, Charlotte Tilbury, Hourglass. Доставка по Москве и всей России. Гарантия подлинности.">
@@ -10,21 +10,23 @@
   <link rel="canonical" href="https://beautysupplymsk.github.io/s/">
   <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg">
 
+  <!-- TODO: вставить код счётчика Яндекс.Метрики или Google Analytics -->
+  <!-- Инструкция: https://metrika.yandex.ru/ -->
+
   <!-- Open Graph / Social -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://beautysupplymsk.github.io/s/">
-  <meta property="og:title" content="Beauty Supply — Премиальная косметика из США">
-  <meta property="og:description" content="Делаем для вас недоступное — доступным! Премиальная косметика из США: Image Skincare, Charlotte Tilbury, Hourglass.">
+  <meta property="og:title" content="Beauty Supply — Премиальная косметика из США в России">
+  <meta property="og:description" content="Официальный поставщик оригинальной косметики из США: Image Skincare, Charlotte Tilbury, Hourglass. Доставка по Москве и всей России. Гарантия подлинности.">
   <meta property="og:image" content="https://beautysupplymsk.github.io/s/assets/images/og-default.png">
-
-  
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:type" content="image/png">
+
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Beauty Supply — Премиальная косметика из США">
-  <meta name="twitter:description" content="Делаем для вас недоступное — доступным! 100% оригинал из США.">
+  <meta name="twitter:title" content="Beauty Supply — Премиальная косметика из США в России">
+  <meta name="twitter:description" content="Официальный поставщик оригинальной косметики из США: Image Skincare, Charlotte Tilbury, Hourglass. Доставка по Москве и всей России.">
   <meta name="twitter:image" content="https://beautysupplymsk.github.io/s/assets/images/og-default.png">
 
   <!-- Stylesheets -->
@@ -272,8 +274,11 @@
       renderFooter();
 
       // Load bestsellers
-      fetch('./assets/data/products.json')
-        .then(res => res.json())
+      fetch(`${getBasePath()}assets/data/products.json`)
+        .then(res => {
+          if (!res.ok) throw new Error('Network response was not ok');
+          return res.json();
+        })
         .then(products => {
           const container = document.getElementById('bestsellers-grid');
           if (container) {
@@ -281,19 +286,54 @@
             container.innerHTML = bestsellers.map(p => renderProductCard(p)).join('');
           }
         })
-        .catch(err => console.error('Error loading products:', err));
+        .catch(err => {
+          console.error('Error loading products:', err);
+          const container = document.getElementById('bestsellers-grid');
+          if (container) {
+            container.innerHTML = '<p class="error" style="grid-column: 1/-1; text-align: center; color: var(--color-muted); padding: var(--space-4) 0;">Не удалось загрузить данные. Обновите страницу.</p>';
+          }
+        });
 
       // Load reviews
-      fetch('./assets/data/reviews.json')
-        .then(res => res.json())
+      fetch(`${getBasePath()}assets/data/reviews.json`)
+        .then(res => {
+          if (!res.ok) throw new Error('Network response was not ok');
+          return res.json();
+        })
         .then(reviews => {
           const container = document.getElementById('reviews-grid');
           if (container) {
             container.innerHTML = reviews.map(r => renderReviewCard(r)).join('');
           }
         })
-        .catch(err => console.error('Error loading reviews:', err));
+        .catch(err => {
+          console.error('Error loading reviews:', err);
+          const container = document.getElementById('reviews-grid');
+          if (container) {
+            container.innerHTML = '<p class="error" style="grid-column: 1/-1; text-align: center; color: var(--color-muted); padding: var(--space-4) 0;">Не удалось загрузить отзывы. Обновите страницу.</p>';
+          }
+        });
     });
+  </script>
+  <!-- Баннер согласия на использование cookies (152-ФЗ) -->
+  <div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Уведомление о cookies" hidden>
+    <p>Мы используем cookies для корректной работы сайта.
+       <a href="./pages/legal/privacy.html">Политика конфиденциальности</a></p>
+    <button id="cookie-accept" type="button">Принять</button>
+  </div>
+  <script>
+    // Инициализация баннера согласия на cookies
+    (function () {
+      var banner = document.getElementById('cookie-banner');
+      var btn = document.getElementById('cookie-accept');
+      if (!localStorage.getItem('cookies_accepted')) {
+        banner.removeAttribute('hidden');
+      }
+      btn.addEventListener('click', function () {
+        localStorage.setItem('cookies_accepted', '1');
+        banner.setAttribute('hidden', '');
+      });
+    }());
   </script>
 </body>
 </html>

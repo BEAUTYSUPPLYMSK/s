@@ -1,28 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Контакты — Beauty Supply</title>
-  <meta name="description" content="Свяжитесь с Beauty Supply через Telegram, Avito или Instagram. Заказ оригинальной косметики из США.">
+  <title>Контакты интернет-магазина косметики Beauty Supply</title>
+  <meta name="description" content="Контакты и каналы связи интернет-магазина Beauty Supply: заказ оригинальной косметики из США через Telegram-бота, сообщество, Instagram или профиль Avito.">
   
   <link rel="canonical" href="https://beautysupplymsk.github.io/s/pages/contacts.html">
   <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
   <link rel="stylesheet" href="../styles/main.css">
 
+  <!-- TODO: вставить код счётчика Яндекс.Метрики или Google Analytics -->
+  <!-- Инструкция: https://metrika.yandex.ru/ -->
+
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://beautysupplymsk.github.io/s/pages/contacts.html">
-  <meta property="og:title" content="Контакты — Beauty Supply">
-  <meta property="og:description" content="Премиальная косметика из США: Image Skincare, Charlotte Tilbury, Hourglass. 100% оригинал.">
+  <meta property="og:title" content="Контакты интернет-магазина косметики Beauty Supply">
+  <meta property="og:description" content="Контакты и каналы связи интернет-магазина Beauty Supply: заказ оригинальной косметики из США через Telegram-бота, сообщество, Instagram или профиль Avito.">
   <meta property="og:image" content="https://beautysupplymsk.github.io/s/assets/images/og-default.png">
-
-  
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:type" content="image/png">
+
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Контакты — Beauty Supply">
-  <meta name="twitter:description" content="100% оригинальная косметика из США в России.">
+  <meta name="twitter:title" content="Контакты интернет-магазина косметики Beauty Supply">
+  <meta name="twitter:description" content="Контакты и каналы связи интернет-магазина Beauty Supply: заказ оригинальной косметики из США через Telegram-бота, сообщество, Instagram или профиль Avito.">
   <meta name="twitter:image" content="https://beautysupplymsk.github.io/s/assets/images/og-default.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -89,6 +91,7 @@
           <div><strong>Доставка:</strong> Вся территория РФ (СДЭК, Авито, Курьер)</div>
           <div><strong>Email:</strong> <a href="mailto:support@beauty-supply.shop" style="color: var(--color-accent-dark);">support@beauty-supply.shop</a></div>
           <div><strong>Время работы:</strong> Пн–Вс с 10:00 до 22:00 (МСК)</div>
+          <!-- TODO: заполнить юридические реквизиты (ИНН/ОГРН/юридический адрес) вручную — агент не имеет права выдумывать это значение -->
         </div>
       </div>
 
@@ -104,6 +107,26 @@
       renderNav('contacts');
       renderFooter();
     });
+  </script>
+  <!-- Баннер согласия на использование cookies (152-ФЗ) -->
+  <div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Уведомление о cookies" hidden>
+    <p>Мы используем cookies для корректной работы сайта.
+       <a href="./legal/privacy.html">Политика конфиденциальности</a></p>
+    <button id="cookie-accept" type="button">Принять</button>
+  </div>
+  <script>
+    // Инициализация баннера согласия на cookies
+    (function () {
+      var banner = document.getElementById('cookie-banner');
+      var btn = document.getElementById('cookie-accept');
+      if (!localStorage.getItem('cookies_accepted')) {
+        banner.removeAttribute('hidden');
+      }
+      btn.addEventListener('click', function () {
+        localStorage.setItem('cookies_accepted', '1');
+        banner.setAttribute('hidden', '');
+      });
+    }());
   </script>
 </body>
 </html>

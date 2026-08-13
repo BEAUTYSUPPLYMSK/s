@@ -1,4 +1,4 @@
 User-agent: *
-Allow: /
+Allow: /s/
 
-Sitemap: https://beautysupply.shop/sitemap.xml
+Sitemap: https://beautysupplymsk.github.io/s/sitemap.xml

@@ -1,28 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Публичная оферта — Beauty Supply</title>
-  <meta name="description" content="Публичная оферта — Beauty Supply. 100% оригинальная косметика Image Skincare, Charlotte Tilbury, Hourglass из США в России с доставкой.">
+  <title>Публичная оферта интернет-магазина косметики Beauty Supply</title>
+  <meta name="description" content="Официальный текст публичной оферты интернет-магазина Beauty Supply на розничную продажу оригинальной парфюмерно-косметической продукции с доставкой по РФ.">
   
   <link rel="canonical" href="https://beautysupplymsk.github.io/s/pages/legal/offer.html">
   <link rel="icon" type="image/svg+xml" href="../../assets/icons/favicon.svg">
   <link rel="stylesheet" href="../../styles/main.css">
 
+  <!-- TODO: вставить код счётчика Яндекс.Метрики или Google Analytics -->
+  <!-- Инструкция: https://metrika.yandex.ru/ -->
+
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://beautysupplymsk.github.io/s/pages/legal/offer.html">
-  <meta property="og:title" content="Публичная оферта — Beauty Supply">
-  <meta property="og:description" content="Премиальная косметика из США: Image Skincare, Charlotte Tilbury, Hourglass. 100% оригинал.">
+  <meta property="og:title" content="Публичная оферта интернет-магазина косметики Beauty Supply">
+  <meta property="og:description" content="Официальный текст публичной оферты интернет-магазина Beauty Supply на розничную продажу оригинальной парфюмерно-косметической продукции с доставкой по РФ.">
   <meta property="og:image" content="https://beautysupplymsk.github.io/s/assets/images/og-default.png">
-
-  
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:type" content="image/png">
+
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Публичная оферта — Beauty Supply">
-  <meta name="twitter:description" content="100% оригинальная косметика из США в России.">
+  <meta name="twitter:title" content="Публичная оферта интернет-магазина косметики Beauty Supply">
+  <meta name="twitter:description" content="Официальный текст публичной оферты интернет-магазина Beauty Supply на розничную продажу оригинальной парфюмерно-косметической продукции с доставкой по РФ.">
   <meta name="twitter:image" content="https://beautysupplymsk.github.io/s/assets/images/og-default.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -53,7 +55,7 @@
         <section>
           <h2 style="font-size: var(--text-xl); margin-bottom: var(--space-3);">1. Термины и определения</h2>
           <p style="color: var(--color-secondary);">
-            <strong>Продавец:</strong> Beauty Supply ИП (реквизиты указываются при оформлении заказа и в счете-договоре).<br>
+            <strong>Продавец:</strong> Beauty Supply ИП <!-- TODO: заполнить вручную — агент не имеет права выдумывать это значение --> (реквизиты указываются при оформлении заказа и в счете-договоре).<br>
             <strong>Покупатель:</strong> Любое физическое лицо, акцептовавшее данную оферту путем оформления заказа через сайт или Telegram-бота.
           </p>
         </section>
@@ -82,7 +84,7 @@
         <section>
           <h2 style="font-size: var(--text-xl); margin-bottom: var(--space-3);">5. Реквизиты Продавца</h2>
           <p style="color: var(--color-secondary);">
-            ИП (реквизиты предоставляются по запросу), email: <a href="mailto:support@beauty-supply.shop" style="color: var(--color-accent-dark);">support@beauty-supply.shop</a>
+            ИП <!-- TODO: заполнить вручную — агент не имеет права выдумывать это значение --> (реквизиты предоставляются по запросу), email: <a href="mailto:support@beauty-supply.shop" style="color: var(--color-accent-dark);">support@beauty-supply.shop</a>
           </p>
         </section>
       </div>
@@ -99,6 +101,26 @@
       renderNav('');
       renderFooter();
     });
+  </script>
+  <!-- Баннер согласия на использование cookies (152-ФЗ) -->
+  <div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Уведомление о cookies" hidden>
+    <p>Мы используем cookies для корректной работы сайта.
+       <a href="privacy.html">Политика конфиденциальности</a></p>
+    <button id="cookie-accept" type="button">Принять</button>
+  </div>
+  <script>
+    // Инициализация баннера согласия на cookies
+    (function () {
+      var banner = document.getElementById('cookie-banner');
+      var btn = document.getElementById('cookie-accept');
+      if (!localStorage.getItem('cookies_accepted')) {
+        banner.removeAttribute('hidden');
+      }
+      btn.addEventListener('click', function () {
+        localStorage.setItem('cookies_accepted', '1');
+        banner.setAttribute('hidden', '');
+      });
+    }());
   </script>
 </body>
 </html>

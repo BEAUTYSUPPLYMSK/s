@@ -1,28 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Индивидуальный Предзаказ — Beauty Supply</title>
-  <meta name="description" content="Оформление индивидуального предзаказа редкой уходовой и декоративной косметики из США.">
+  <title>Индивидуальный предзаказ косметики из США — Beauty Supply</title>
+  <meta name="description" content="Оформление индивидуального предзаказа на редкую и селективную косметику из США. Прямой выкуп у официальных ритейлеров с доставкой по Москве и всей России.">
   
   <link rel="canonical" href="https://beautysupplymsk.github.io/s/pages/preorder.html">
   <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
   <link rel="stylesheet" href="../styles/main.css">
 
+  <!-- TODO: вставить код счётчика Яндекс.Метрики или Google Analytics -->
+  <!-- Инструкция: https://metrika.yandex.ru/ -->
+
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://beautysupplymsk.github.io/s/pages/preorder.html">
-  <meta property="og:title" content="Индивидуальный Предзаказ — Beauty Supply">
-  <meta property="og:description" content="Премиальная косметика из США: Image Skincare, Charlotte Tilbury, Hourglass. 100% оригинал.">
+  <meta property="og:title" content="Индивидуальный предзаказ косметики из США — Beauty Supply">
+  <meta property="og:description" content="Оформление индивидуального предзаказа на редкую и селективную косметику из США. Прямой выкуп у официальных ритейлеров с доставкой по Москве и всей России.">
   <meta property="og:image" content="https://beautysupplymsk.github.io/s/assets/images/og-default.png">
-
-  
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:type" content="image/png">
+
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Индивидуальный Предзаказ — Beauty Supply">
-  <meta name="twitter:description" content="100% оригинальная косметика из США в России.">
+  <meta name="twitter:title" content="Индивидуальный предзаказ косметики из США — Beauty Supply">
+  <meta name="twitter:description" content="Оформление индивидуального предзаказа на редкую и селективную косметику из США. Прямой выкуп у официальных ритейлеров с доставкой по Москве и всей России.">
   <meta name="twitter:image" content="https://beautysupplymsk.github.io/s/assets/images/og-default.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -53,31 +55,32 @@
         
         <div class="form-group">
           <label for="form-name" class="form-label">Ваше Имя *</label>
-          <input type="text" id="form-name" required placeholder="Анна" class="form-input">
+          <input type="text" id="form-name" name="name" required placeholder="Анна" class="form-input">
         </div>
 
         <div class="form-group">
           <label for="form-contact" class="form-label">Telegram ник или телефон *</label>
-          <input type="text" id="form-contact" required placeholder="@username или +7 (999) 000-00-00" class="form-input">
+          <input type="text" id="form-contact" name="contact" required placeholder="@username или +7 (999) 000-00-00" class="form-input">
         </div>
 
         <div class="form-group">
           <label for="form-product" class="form-label">Интересующий товар / бренд *</label>
-          <input type="text" id="form-product" required placeholder="Например: Charlotte Tilbury Pillow Talk Medium Lipstick" class="form-input">
+          <input type="text" id="form-product" name="product" required placeholder="Например: Charlotte Tilbury Pillow Talk Medium Lipstick" class="form-input">
         </div>
 
         <div class="form-group">
           <label for="form-comment" class="form-label">Комментарий (необязательно)</label>
-          <textarea id="form-comment" rows="3" placeholder="Укажите желаемый объем, оттенок или срочность..." class="form-input"></textarea>
+          <textarea id="form-comment" name="comment" rows="3" placeholder="Укажите желаемый объем, оттенок или срочность..." class="form-input"></textarea>
         </div>
 
         <div style="display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--text-sm); color: var(--color-muted);">
-          <input type="checkbox" id="form-consent" required style="margin-top: 3px;">
-          <label for="form-consent">
-            Я согласен(а) на обработку персональных данных в соответствии с <a href="legal/privacy.html" style="text-decoration: underline; color: var(--color-accent-dark);" target="_blank">Политикой конфиденциальности</a>.
+          <label class="consent-label" style="display: flex; align-items: flex-start; gap: var(--space-2); cursor: pointer;">
+            <input type="checkbox" name="consent" id="form-consent" required style="margin-top: 3px;">
+            <span>Я согласен(на) на <a href="legal/privacy.html" style="text-decoration: underline; color: var(--color-accent-dark);" target="_blank" rel="noopener noreferrer">обработку персональных данных</a></span>
           </label>
         </div>
 
+        <!-- TODO: при необходимости подключить серверный backend отправки формы -->
         <button type="submit" class="btn btn-accent btn-lg" style="margin-top: var(--space-2);">
           Отправить заявку в Telegram →
         </button>
@@ -107,6 +110,9 @@
       if (form) {
         form.addEventListener('submit', (e) => {
           e.preventDefault();
+          if (!form.elements.consent || !form.elements.consent.checked) {
+            return;
+          }
           const name = document.getElementById('form-name').value;
           const contact = document.getElementById('form-contact').value;
           const product = document.getElementById('form-product').value;
@@ -118,6 +124,26 @@
         });
       }
     });
+  </script>
+  <!-- Баннер согласия на использование cookies (152-ФЗ) -->
+  <div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Уведомление о cookies" hidden>
+    <p>Мы используем cookies для корректной работы сайта.
+       <a href="./legal/privacy.html">Политика конфиденциальности</a></p>
+    <button id="cookie-accept" type="button">Принять</button>
+  </div>
+  <script>
+    // Инициализация баннера согласия на cookies
+    (function () {
+      var banner = document.getElementById('cookie-banner');
+      var btn = document.getElementById('cookie-accept');
+      if (!localStorage.getItem('cookies_accepted')) {
+        banner.removeAttribute('hidden');
+      }
+      btn.addEventListener('click', function () {
+        localStorage.setItem('cookies_accepted', '1');
+        banner.setAttribute('hidden', '');
+      });
+    }());
   </script>
 </body>
 </html>
