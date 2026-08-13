@@ -302,6 +302,7 @@ function renderFooter() {
 
         <div class="footer-bottom">
           <div>© 2011–2026 Beauty Supply. Все права защищены. Не является публичной офертой.</div>
+          <!-- TODO: заполнить юридические реквизиты (ИНН/ОГРН/адрес) вручную — агент не имеет права выдумывать это значение -->
           <div>beauty-supply.shop</div>
         </div>
       </div>
