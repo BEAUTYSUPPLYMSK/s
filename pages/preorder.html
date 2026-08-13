@@ -113,14 +113,33 @@
           if (!form.elements.consent || !form.elements.consent.checked) {
             return;
           }
-          const name = document.getElementById('form-name').value;
-          const contact = document.getElementById('form-contact').value;
-          const product = document.getElementById('form-product').value;
-          const comment = document.getElementById('form-comment').value;
+          const name = document.getElementById('form-name').value.trim();
+          const contact = document.getElementById('form-contact').value.trim();
+          const product = document.getElementById('form-product').value.trim();
+          const comment = document.getElementById('form-comment').value.trim();
 
-          const text = encodeURIComponent(`Здравствуйте! Заявка на предзаказ:\n• Имя: ${name}\n• Контакт: ${contact}\n• Товар: ${product}\n• Комментарий: ${comment || '—'}`);
-          
-          window.open(`https://t.me/BEAUTYSUPPLYMSKBOT?start=preorder_${encodeURIComponent(product.substring(0, 30))}`, '_blank');
+          const msg = [
+            'Здравствуйте! Заявка на предзаказ:',
+            '• Имя: ' + name,
+            '• Контакт: ' + contact,
+            '• Товар: ' + product,
+            '• Комментарий: ' + (comment || '—')
+          ].join('\n');
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(msg).catch(function () {});
+          }
+          const startToken = 'preorder_' + product.replace(/[^\w\-а-яёА-ЯЁ]+/gi, '_').slice(0, 40);
+          const tgUrl = 'https://t.me/BEAUTYSUPPLYMSKBOT?start=' + encodeURIComponent(startToken) + '&text=' + encodeURIComponent(msg);
+          window.open(tgUrl, '_blank', 'noopener,noreferrer');
+
+          const existingNote = document.getElementById('preorder-sent-note');
+          if (existingNote) existingNote.remove();
+          const note = document.createElement('p');
+          note.id = 'preorder-sent-note';
+          note.setAttribute('role', 'status');
+          note.style.cssText = 'margin-top:1rem;font-size:var(--text-sm);color:var(--color-success);';
+          note.textContent = 'Заявка подготовлена. Текст скопирован в буфер — вставьте его в чат с ботом, если поле не заполнилось автоматически.';
+          form.appendChild(note);
         });
       }
     });

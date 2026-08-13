@@ -15,7 +15,9 @@ function getBasePath() {
 
 // Helper: Format currency in Russian standard
 function formatPrice(price) {
-  return new Intl.NumberFormat('ru-RU').format(price) + ' ₽';
+  const num = Number(price);
+  if (!Number.isFinite(num)) return 'Цена по запросу';
+  return new Intl.NumberFormat('ru-RU').format(num) + ' ₽';
 }
 
 // Helper: Escape HTML to prevent XSS when injecting data-driven strings (defense-in-depth)
@@ -48,7 +50,7 @@ function renderNav(currentPage = 'home') {
   ];
 
   const linksHtml = links.map(link => `
-    <a href="${link.href}" class="nav-link ${currentPage === link.id ? 'active' : ''}" aria-current="${currentPage === link.id ? 'page' : 'false'}">${link.label}</a>
+    <a href="${link.href}" class="nav-link ${currentPage === link.id ? 'active' : ''}"${currentPage === link.id ? ' aria-current="page"' : ''}>${link.label}</a>
   `).join('');
 
   navContainer.innerHTML = `
@@ -92,10 +94,12 @@ function renderNav(currentPage = 'home') {
       }
     });
 
-    // Close menu on escape key
-    toggleBtn.addEventListener('keydown', (e) => {
+    // Close menu on Escape from anywhere (focus may be inside the drawer)
+    document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && navLinks.classList.contains('is-open')) {
-        toggleBtn.click();
+        navLinks.classList.remove('is-open');
+        toggleBtn.classList.remove('is-active');
+        toggleBtn.setAttribute('aria-expanded', 'false');
         toggleBtn.focus();
       }
     });
@@ -168,7 +172,10 @@ function renderProductCard(product) {
 
   const originBadge = product.origin === 'USA' ? '<span class="badge">🇺🇸 США</span>' : '';
   const bestBadge = product.isBestseller ? '<span class="badge badge-accent">Хит продаж</span>' : '';
-  const stockBadge = product.inStock ? '<span class="badge badge-success">✓ В наличии</span>' : '';
+  const stockBadge = product.inStock
+    ? '<span class="badge badge-success">✓ В наличии</span>'
+    : '<span class="badge">Предзаказ</span>';
+  const telegramHref = escapeHtml(product.telegramLink || 'https://t.me/BEAUTYSUPPLYMSKBOT');
 
   return `
     <article class="product-card" data-category="${escapeHtml(product.category)}" data-brand="${safeBrand}">
@@ -205,7 +212,7 @@ function renderProductCard(product) {
             <div style="font-size: var(--text-xs); color: var(--color-success); font-weight: 500;">Доставка по РФ</div>
           </div>
           <div class="product-card-actions">
-            <a href="${product.telegramLink}" target="_blank" rel="noopener noreferrer" class="btn btn-accent btn-sm" title="Заказать через Telegram Bot" aria-label="Заказать ${safeName} через Telegram">
+            <a href="${telegramHref}" target="_blank" rel="noopener noreferrer" class="btn btn-accent btn-sm" title="Заказать через Telegram Bot" aria-label="Заказать ${safeName} через Telegram">
               💬 Заказать
             </a>
           </div>

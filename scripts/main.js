@@ -45,9 +45,19 @@ function initCatalogPage() {
   // Pre-fill filters from URL params if present
   const initialCategory = getQueryParam('category');
   const initialBrand = getQueryParam('brand');
+  const initialGoal = getQueryParam('goal');
+  const initialSearch = getQueryParam('q');
 
-  if (initialCategory && filterCategory) filterCategory.value = initialCategory;
-  if (initialBrand && filterBrand) filterBrand.value = initialBrand;
+  function setSelectIfValid(selectEl, value) {
+    if (!selectEl || value == null || value === '') return;
+    const exists = Array.from(selectEl.options).some(opt => opt.value === value);
+    if (exists) selectEl.value = value;
+  }
+
+  setSelectIfValid(filterCategory, initialCategory);
+  setSelectIfValid(filterBrand, initialBrand);
+  setSelectIfValid(filterGoal, initialGoal);
+  if (initialSearch && searchInput) searchInput.value = initialSearch;
 
   let allProducts = [];
 
@@ -127,6 +137,7 @@ function initCatalogPage() {
           url.searchParams.delete('brand');
           url.searchParams.delete('category');
           url.searchParams.delete('goal');
+          url.searchParams.delete('q');
           window.history.replaceState({}, '', url);
           applyFilters();
         });
@@ -264,17 +275,22 @@ function initProductDetailPage() {
           "offers": {
             "@type": "Offer",
             "priceCurrency": product.currency || 'RUB',
-            "price": product.price,
+            "price": String(product.price),
             "availability": product.inStock ? "https://schema.org/InStock" : "https://schema.org/PreOrder",
             "url": canonicalUrl
           }
         });
       }
 
-      // Render Product Detail Content
-      const rawImage = (product.image || '').replace(/^\.\//, '');
+      setMetaTag('twitter:card', 'summary_large_image', 'name');
+
+      // Render Product Detail Content (reuse rawImage declared above)
       const imageSrc = `${base}${rawImage}`;
       const catName = CATEGORY_NAMES[product.category] || product.category;
+      const telegramHref = escapeHtml(product.telegramLink || 'https://t.me/BEAUTYSUPPLYMSKBOT');
+      const stockBadge = product.inStock
+        ? '<span class="badge badge-success" style="font-size: var(--text-xs);">✓ В наличии в Москве</span>'
+        : '<span class="badge" style="font-size: var(--text-xs);">Предзаказ</span>';
 
       detailContainer.innerHTML = `
         <!-- Breadcrumbs -->
@@ -305,8 +321,8 @@ function initProductDetailPage() {
             <div class="product-gallery-thumbs" style="display: flex; justify-content: center; gap: 0.5rem; margin-top: var(--space-4); flex-wrap: wrap;" role="list" aria-label="Галерея товара">
               ${product.gallery.map((gImg, idx) => {
                 const thSrc = `${base}${(gImg || '').replace(/^\.\//, '')}`;
-                return `<button type="button" class="gallery-thumb-btn" style="border: 2px solid ${idx === 0 ? 'var(--color-accent)' : 'transparent'}; border-radius: var(--radius-sm); padding: 2px; background: none; cursor: pointer; transition: all 0.2s;" onclick="const mImg=document.getElementById('main-product-image'); if(mImg){mImg.src='${thSrc}';} document.querySelectorAll('.gallery-thumb-btn').forEach(b => b.style.borderColor='transparent'); this.style.borderColor='var(--color-accent)';" aria-label="Показать ракурс ${idx + 1}" role="listitem">
-                  <img src="${thSrc}" alt="" style="width: 56px; height: 56px; object-fit: cover; border-radius: 4px;" loading="lazy" decoding="async">
+                return `<button type="button" class="gallery-thumb-btn" data-src="${escapeHtml(thSrc)}" style="border: 2px solid ${idx === 0 ? 'var(--color-accent)' : 'transparent'}; border-radius: var(--radius-sm); padding: 2px; background: none; cursor: pointer; transition: all 0.2s;" aria-label="Показать ракурс ${idx + 1}" role="listitem">
+                  <img src="${escapeHtml(thSrc)}" alt="" style="width: 56px; height: 56px; object-fit: cover; border-radius: 4px;" loading="lazy" decoding="async">
                 </button>`;
               }).join('')}
             </div>` : ''}
@@ -327,9 +343,7 @@ function initProductDetailPage() {
             
             <div style="font-size: var(--text-2xl); font-weight: 700; color: var(--color-primary); margin-bottom: var(--space-6); display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap;">
               <span>${formatPrice(product.price)}</span>
-              <span class="badge badge-success" style="font-size: var(--text-xs);">
-                ✓ В наличии в Москве
-              </span>
+              ${stockBadge}
             </div>
 
             <p style="font-size: var(--text-base); color: var(--color-secondary); margin-bottom: var(--space-6); line-height: 1.7;">
@@ -348,7 +362,7 @@ function initProductDetailPage() {
 
             <!-- Action CTAs -->
             <div style="display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-8);">
-              <a href="${product.telegramLink}" target="_blank" rel="noopener noreferrer" class="btn btn-accent btn-lg" style="width: 100%;">
+              <a href="${telegramHref}" target="_blank" rel="noopener noreferrer" class="btn btn-accent btn-lg" style="width: 100%;">
                 💬 Заказать через Telegram Bot
               </a>
               <a href="${base}pages/preorder.html?product=${encodeURIComponent(product.name)}" class="btn btn-outline" style="width: 100%;">
