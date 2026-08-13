@@ -22,7 +22,7 @@
   
   /* Accent Colors - Rose Gold & Mauve */
   --color-accent: #C4917B;               /* Rose Gold / Dusty Rose */
-  --color-accent-dark: #9E7263;          /* Deep Rose */
+  --color-accent-dark: #8A5E50;          /* Deep Rose — WCAG AA w/ white & on light */
   --color-accent-light: #F2E6E1;          /* Blush Cream */
   --color-accent-subtle: #FAF5F3;        /* Pearl Blush */
   --color-accent-mauve: #B8A5C4;         /* Soft Mauve */
@@ -30,7 +30,7 @@
   
   /* Secondary Text & Borders */
   --color-secondary: #5C5060;            /* Muted Plum */
-  --color-muted: #8A8090;                /* Soft Gray Plum */
+  --color-muted: #6E6675;                /* Soft Gray Plum — WCAG AA on light bg (was #8A8090) */
   --color-border: #EDE8E3;               /* Warm Gray Border */
   --color-border-dark: #D8D0C8;          /* Deeper Border */
   

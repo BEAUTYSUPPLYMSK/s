@@ -3,8 +3,6 @@
    Premium Light Beauty Aesthetic with WCAG 2.2 AA Accessibility
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
-
 /* === Modern CSS Reset === */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -107,7 +105,7 @@ ul, ol {
   position: absolute;
   top: -100%;
   left: 1rem;
-  background: var(--color-accent);
+  background: var(--color-accent-dark);
   color: #FFFFFF;
   padding: 0.75rem 1.25rem;
   z-index: 9999;
@@ -212,14 +210,14 @@ ul, ol {
 }
 
 .btn-accent {
-  background-color: var(--color-accent);
+  background-color: var(--color-accent-dark);
   color: #FFFFFF;
-  border-color: var(--color-accent);
+  border-color: var(--color-accent-dark);
 }
 
 .btn-accent:hover {
-  background-color: var(--color-accent-dark);
-  border-color: var(--color-accent-dark);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
   color: #FFFFFF;
   box-shadow: var(--shadow-rose);
   transform: translateY(-2px);
@@ -272,7 +270,7 @@ ul, ol {
 }
 
 .badge-accent {
-  background-color: var(--color-accent);
+  background-color: var(--color-accent-dark);
   color: #FFFFFF;
 }
 
