@@ -1,3 +1,4 @@
 User-agent: *
-Allow: /
+Allow: /s/
+
 Sitemap: https://beautysupplymsk.github.io/s/sitemap.xml
