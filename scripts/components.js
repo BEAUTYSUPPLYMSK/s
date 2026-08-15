@@ -177,6 +177,40 @@ function renderProductCard(product) {
     : '<span class="badge">Предзаказ</span>';
   const telegramHref = escapeHtml(product.telegramLink || 'https://t.me/BEAUTYSUPPLYMSKBOT');
 
+  // Carousel slides: full gallery (fallback to the main image), deduplicated
+  const galleryRaw = Array.isArray(product.gallery) && product.gallery.length
+    ? product.gallery
+    : [product.image];
+  const slides = [...new Set(galleryRaw.map(g => `${base}${(g || '').replace(/^\.\//, '')}`))];
+  const hasCarousel = slides.length > 1;
+
+  const slidesHtml = slides.map((src, idx) => `
+            <img
+              src="${escapeHtml(src)}"
+              ${idx === 0 ? `srcset="${escapeHtml(imageSrc400)} 400w, ${escapeHtml(imageSrc)} 800w" sizes="(max-width:700px) 90vw, (max-width:1100px) 45vw, 320px"` : ''}
+              alt="${safeBrand} — ${safeName}${hasCarousel ? `, фото ${idx + 1} из ${slides.length}` : ''}"
+              class="card-carousel-slide"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="800"
+              onerror="this.onerror=null;this.src='${placeholder}'"
+            >`).join('');
+
+  const dotsHtml = hasCarousel ? `
+        <div class="card-carousel-dots" aria-hidden="true">
+          ${slides.map((s, idx) => `<span class="card-carousel-dot${idx === 0 ? ' active' : ''}"></span>`).join('')}
+        </div>
+        <span class="card-carousel-counter" aria-hidden="true">1/${slides.length}</span>` : '';
+
+  const arrowsHtml = hasCarousel ? `
+        <button type="button" class="card-carousel-btn card-carousel-prev" aria-label="Предыдущее фото: ${safeBrand} ${safeName}">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button type="button" class="card-carousel-btn card-carousel-next" aria-label="Следующее фото: ${safeBrand} ${safeName}">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        </button>` : '';
+
   return `
     <article class="product-card" data-category="${escapeHtml(product.category)}" data-brand="${safeBrand}">
       <div class="product-card-image-wrap">
@@ -185,20 +219,15 @@ function renderProductCard(product) {
           ${bestBadge}
           ${stockBadge}
         </div>
-        <a href="${detailUrl}" aria-label="Смотреть ${safeBrand} ${safeName}">
-          <img 
-            src="${imageSrc}" 
-            srcset="${imageSrc400} 400w, ${imageSrc} 800w"
-            sizes="(max-width:700px) 90vw, (max-width:1100px) 45vw, 320px"
-            alt="${safeBrand} — ${safeName}" 
-            class="product-card-image"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="400"
-            onerror="this.onerror=null;this.src='${placeholder}'"
-          >
-        </a>
+        <div class="card-carousel" data-slide="0">
+          <a href="${detailUrl}" class="card-carousel-link" aria-label="Смотреть ${safeBrand} ${safeName}">
+            <div class="card-carousel-track">
+${slidesHtml}
+            </div>
+          </a>
+${arrowsHtml}
+${dotsHtml}
+        </div>
       </div>
       <div class="product-card-body">
         <div class="product-card-brand">${safeBrand}${safeVolume ? ' · ' + safeVolume : ''}</div>
@@ -316,3 +345,75 @@ function renderFooter() {
     </footer>
   `;
 }
+
+/**
+ * Card Carousel Controller (event delegation)
+ * Enables left/right arrows, touch swipe and keyboard navigation
+ * for every product card rendered by renderProductCard().
+ */
+function setCardSlide(carousel, idx) {
+  const slides = carousel.querySelectorAll('.card-carousel-slide');
+  const count = slides.length;
+  if (!count) return;
+  const next = ((idx % count) + count) % count;
+  carousel.dataset.slide = String(next);
+  const track = carousel.querySelector('.card-carousel-track');
+  if (track) track.style.transform = `translateX(-${next * 100}%)`;
+  carousel.querySelectorAll('.card-carousel-dot').forEach((d, i) => {
+    d.classList.toggle('active', i === next);
+  });
+  const counter = carousel.querySelector('.card-carousel-counter');
+  if (counter) counter.textContent = `${next + 1}/${count}`;
+}
+
+function initCardCarousels() {
+  // Arrow clicks (delegated, works for dynamically rendered cards too)
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.card-carousel-btn');
+    if (!btn) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const carousel = btn.closest('.card-carousel');
+    if (!carousel) return;
+    const current = parseInt(carousel.dataset.slide || '0', 10);
+    const delta = btn.classList.contains('card-carousel-next') ? 1 : -1;
+    setCardSlide(carousel, current + delta);
+  });
+
+  // Touch swipe support
+  let swipeCarousel = null;
+  let swipeX = 0;
+  let swipeY = 0;
+  document.addEventListener('touchstart', (e) => {
+    swipeCarousel = e.target.closest ? e.target.closest('.card-carousel') : null;
+    if (!swipeCarousel) return;
+    swipeX = e.touches[0].clientX;
+    swipeY = e.touches[0].clientY;
+  }, { passive: true });
+
+  document.addEventListener('touchend', (e) => {
+    if (!swipeCarousel) return;
+    const dx = e.changedTouches[0].clientX - swipeX;
+    const dy = e.changedTouches[0].clientY - swipeY;
+    const carousel = swipeCarousel;
+    swipeCarousel = null;
+    if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+    const current = parseInt(carousel.dataset.slide || '0', 10);
+    setCardSlide(carousel, current + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+
+  // Keyboard: left/right arrows when focus is inside a carousel
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    const carousel = e.target.closest ? e.target.closest('.card-carousel') : null;
+    if (!carousel) return;
+    const tag = (e.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
+    e.preventDefault();
+    const current = parseInt(carousel.dataset.slide || '0', 10);
+    setCardSlide(carousel, current + (e.key === 'ArrowRight' ? 1 : -1));
+  });
+}
+
+// Activate carousels as soon as the script loads (listeners are delegated)
+initCardCarousels();

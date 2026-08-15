@@ -145,7 +145,7 @@ function initCatalogPage() {
     } else {
       container.innerHTML = filtered.map(p => renderProductCard(p)).join('');
       
-      // Update URL with filter params
+      // Update URL with filter params (shareable links)
       const url = new URL(window.location);
       if (brandVal) url.searchParams.set('brand', brandVal);
       else url.searchParams.delete('brand');
@@ -153,6 +153,9 @@ function initCatalogPage() {
       else url.searchParams.delete('category');
       if (goalVal) url.searchParams.set('goal', goalVal);
       else url.searchParams.delete('goal');
+      const rawSearch = searchInput ? searchInput.value.trim() : '';
+      if (rawSearch) url.searchParams.set('q', rawSearch);
+      else url.searchParams.delete('q');
       window.history.replaceState({}, '', url);
     }
   }
@@ -306,7 +309,7 @@ function initProductDetailPage() {
 
         <div class="product-detail-grid">
           <!-- Product Media Column -->
-          <div class="product-gallery">
+          <div class="product-gallery" tabindex="0" aria-label="Галерея изображений товара, используйте стрелки влево и вправо для листания">
             <img 
               id="main-product-image"
               src="${imageSrc}" 
@@ -317,6 +320,13 @@ function initProductDetailPage() {
               decoding="async"
               onerror="this.onerror=null;this.src='${placeholder}'"
             >
+            <button type="button" class="gallery-arrow gallery-arrow-prev" id="gallery-prev" aria-label="Предыдущее фото товара">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button type="button" class="gallery-arrow gallery-arrow-next" id="gallery-next" aria-label="Следующее фото товара">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+            <span class="card-carousel-counter" id="gallery-counter" aria-hidden="true"></span>
             ${(product.gallery && product.gallery.length > 1) ? `
             <div class="product-gallery-thumbs" style="display: flex; justify-content: center; gap: 0.5rem; margin-top: var(--space-4); flex-wrap: wrap;" role="list" aria-label="Галерея товара">
               ${product.gallery.map((gImg, idx) => {
@@ -414,6 +424,63 @@ function initProductDetailPage() {
           </div>
         </section>
       `;
+
+      // --- Gallery controller: left/right arrows, swipe, keyboard, thumbs sync ---
+      const galleryImages = (Array.isArray(product.gallery) && product.gallery.length)
+        ? product.gallery.map(g => `${base}${(g || '').replace(/^\.\//, '')}`)
+        : [imageSrc];
+      const mainImg = document.getElementById('main-product-image');
+      const prevBtn = document.getElementById('gallery-prev');
+      const nextBtn = document.getElementById('gallery-next');
+      const counterEl = document.getElementById('gallery-counter');
+      const thumbBtns = Array.from(detailContainer.querySelectorAll('.gallery-thumb-btn'));
+      let galleryIdx = 0;
+
+      const showGallerySlide = (idx) => {
+        const count = galleryImages.length;
+        if (!count) return;
+        galleryIdx = ((idx % count) + count) % count;
+        if (mainImg) mainImg.src = galleryImages[galleryIdx];
+        thumbBtns.forEach((t, i) => {
+          t.style.borderColor = i === galleryIdx ? 'var(--color-accent)' : 'transparent';
+        });
+        if (counterEl) counterEl.textContent = count > 1 ? `${galleryIdx + 1}/${count}` : '';
+      };
+
+      if (mainImg && galleryImages.length > 1) {
+        if (prevBtn) prevBtn.addEventListener('click', () => showGallerySlide(galleryIdx - 1));
+        if (nextBtn) nextBtn.addEventListener('click', () => showGallerySlide(galleryIdx + 1));
+        thumbBtns.forEach((t, i) => {
+          t.addEventListener('click', () => showGallerySlide(i));
+        });
+
+        // Touch swipe on the main image
+        let gx = 0, gy = 0;
+        mainImg.addEventListener('touchstart', (e) => {
+          gx = e.touches[0].clientX;
+          gy = e.touches[0].clientY;
+        }, { passive: true });
+        mainImg.addEventListener('touchend', (e) => {
+          const dx = e.changedTouches[0].clientX - gx;
+          const dy = e.changedTouches[0].clientY - gy;
+          if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+            showGallerySlide(galleryIdx + (dx < 0 ? 1 : -1));
+          }
+        }, { passive: true });
+
+        // Keyboard arrows while focus is inside the gallery
+        const galleryWrap = detailContainer.querySelector('.product-gallery');
+        if (galleryWrap) {
+          galleryWrap.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') { e.preventDefault(); showGallerySlide(galleryIdx - 1); }
+            if (e.key === 'ArrowRight') { e.preventDefault(); showGallerySlide(galleryIdx + 1); }
+          });
+        }
+        showGallerySlide(0);
+      } else {
+        if (prevBtn) prevBtn.style.display = 'none';
+        if (nextBtn) nextBtn.style.display = 'none';
+      }
 
       // Render Related Products (same brand or category excluding current)
       const related = products

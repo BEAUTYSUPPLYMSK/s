@@ -121,13 +121,17 @@
     (function () {
       var banner = document.getElementById('cookie-banner');
       var btn = document.getElementById('cookie-accept');
-      if (!localStorage.getItem('cookies_accepted')) {
+        function lsGet(k) { try { return window.localStorage.getItem(k); } catch (err) { return null; } }
+      function lsSet(k, v) { try { window.localStorage.setItem(k, v); } catch (err) {} }
+      if (banner && !lsGet('cookies_accepted')) {
         banner.removeAttribute('hidden');
       }
-      btn.addEventListener('click', function () {
-        localStorage.setItem('cookies_accepted', '1');
-        banner.setAttribute('hidden', '');
-      });
+      if (btn) {
+        btn.addEventListener('click', function () {
+          lsSet('cookies_accepted', '1');
+          banner.setAttribute('hidden', '');
+        });
+      }
     }());
   </script>
 </body>
