@@ -233,7 +233,10 @@
     "image": "./public/product-cards/product-13-image-md-biotech-cream/hero.webp",
     "telegramLink": "https://t.me/BEAUTYSUPPLYMSKBOT?start=product_image-md-biotech-cream",
     "gallery": [
-      "./public/product-cards/product-13-image-md-biotech-cream/hero.webp"
+      "./public/product-cards/product-13-image-md-biotech-cream/hero.webp",
+      "./public/product-cards/product-13-image-md-biotech-cream/detail.webp",
+      "./public/product-cards/product-13-image-md-biotech-cream/lifestyle.webp",
+      "./public/product-cards/product-13-image-md-biotech-cream/trust.webp"
     ]
   },
   {
